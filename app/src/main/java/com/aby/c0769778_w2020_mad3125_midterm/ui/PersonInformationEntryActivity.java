@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -36,6 +38,11 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
     private TextInputLayout edtDate;
     private TextInputLayout edtFilingDate;
     private TextInputEditText edtFilingDateText;
+    private TextInputEditText edtSINText;
+    private TextInputLayout edtSIN;
+
+    String sinNumber;
+    Long sinNumberNums;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +54,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         valueSetter();
         addingDatePicker();
         filingDateWarning();
-
+        sinValidations();
         //------- CODE TO PLAY CUSTOM AUDIO ON SCREEN LOAD -------
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.formfilloice);
         mp.start();
@@ -60,6 +67,8 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         edtDate = findViewById(R.id.edtDate);
         edtFilingDateText = findViewById(R.id.edtFilingDateText);
         edtFilingDate = findViewById(R.id.edtFilingDate);
+        edtSIN = findViewById(R.id.edtSIN);
+        edtSINText = findViewById(R.id.edtSINText);
     }
 
     private void valueSetter()
@@ -71,6 +80,37 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         edtFilingDateText.setText(date.toString(fmt));
     }
 
+    private Integer getCount(long n)
+    {
+        int count = 0;
+        while (n != 0) {
+            n = n / 10;
+            ++count;
+        }
+        return count;
+    }
+
+    private void sinValidations() {
+            edtSINText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    sinNumber = edtSINText.getText().toString();
+                    sinNumberNums = Long.parseLong(sinNumber);
+                    if (getCount(sinNumberNums) != 9) {
+                        edtSINText.setError("Please enter a 9 digit number");
+                    }
+                }
+            });
+    }
     private void filingDateWarning()
     {
         edtFilingDateText.setOnClickListener(new View.OnClickListener() {

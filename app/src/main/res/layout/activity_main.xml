@@ -150,7 +150,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="31dp"
             android:layout_marginEnd="7dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="35dp"
             android:src="@drawable/ic_launcher_foreground"
             app:layout_constraintBottom_toTopOf="@+id/edtSIN"
             app:layout_constraintEnd_toEndOf="parent"
@@ -282,6 +282,43 @@
                 android:fontFamily="@font/acme"
                 android:hint="DATE OF FILING"
                 android:editable="false"
+                android:textColor="#050000"
+                android:textColorHint="#050000" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtGrossIncome"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="537dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="253dp"
+            android:ems="10"
+            android:inputType="none"
+            android:textColorHint="#000000"
+            app:boxStrokeColor="#FFFFFF"
+            app:boxStrokeErrorColor="#FFFFFF"
+            app:boxStrokeWidth="4dp"
+            app:errorEnabled="false"
+            app:errorTextColor="#FFFFFF"
+            app:hintTextColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/dollarIcon">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtGrossIncomeText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_edittext"
+                android:cursorVisible="true"
+                android:fontFamily="@font/acme"
+                android:hint="GROSS INCOME"
                 android:textColor="#050000"
                 android:textColorHint="#050000" />
         </com.google.android.material.textfield.TextInputLayout>
