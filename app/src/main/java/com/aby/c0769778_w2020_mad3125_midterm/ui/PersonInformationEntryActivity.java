@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.aby.c0769778_w2020_mad3125_midterm.R;
@@ -37,12 +38,23 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
     private ImageView imgApprove;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
+    private TextInputEditText edtSINText;
+    private TextInputLayout edtSIN;
+    private TextInputLayout edtFirstName;
+    private TextInputEditText edtFirstNameText;
+    private TextInputLayout edtLastName;
+    private TextInputEditText edtLastNameText;
     private TextInputEditText edtDateText;
     private TextInputLayout edtDate;
     private TextInputLayout edtFilingDate;
     private TextInputEditText edtFilingDateText;
-    private TextInputEditText edtSINText;
-    private TextInputLayout edtSIN;
+    private TextInputLayout edtGrossIncome;
+    private TextInputEditText edtGrossIncomeText;
+    private TextInputLayout edtRRSP;
+    private TextInputEditText edtRRSPText;
+    private RadioButton rdBtnMale;
+    private RadioButton rdBtnFemale;
+    private RadioButton rdBtnOther;
 
     private Button btnSubmit;
     private Button btnClear;
@@ -93,6 +105,17 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         edtSINText = findViewById(R.id.edtSINText);
         btnClear = findViewById(R.id.btnClear);
         btnSubmit = findViewById(R.id.btnSubmit);
+        edtFirstName = findViewById(R.id.edtFirstName);
+        edtFirstNameText = findViewById(R.id.edtFirstNameText);
+        edtLastName = findViewById(R.id.edtLastName);
+        edtLastNameText = findViewById(R.id.edtLastNameText);
+        edtRRSP = findViewById(R.id.edtRRSP);
+        edtRRSPText = findViewById(R.id.edtRRSPtext);
+        edtGrossIncome = findViewById(R.id.edtGrossIncome);
+        edtGrossIncomeText = findViewById(R.id.edtGrossIncomeText);
+        rdBtnFemale = findViewById(R.id.rdBtnFemale);
+        rdBtnMale = findViewById(R.id.rdBtnMale);
+        rdBtnOther = findViewById(R.id.rdBtnOther);
     }
 
     private void valueSetter()
@@ -204,5 +227,20 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
     public int calcAge(org.joda.time.LocalDate birthDate, org.joda.time.LocalDate currentDate) {
         Years age = Years.yearsBetween(birthDate, currentDate);
         return age.getYears();
+    }
+
+    public void clearFields()
+    {
+        edtGrossIncomeText.getText().clear();
+        edtSINText.getText().clear();
+        edtFirstNameText.getText().clear();
+        edtLastNameText.getText().clear();
+        edtRRSPText.getText().clear();
+        edtDateText.getText().clear();
+        edtFilingDateText.getText().clear();
+
+        rdBtnFulltime.setChecked(false);
+        rdBtnParttime.setChecked(false);
+        rdBtnTrainee.setChecked(false);
     }
 }
