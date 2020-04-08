@@ -2,31 +2,31 @@ package com.aby.c0769778_w2020_mad3125_midterm.util;
 
 public class TaxCalculator {
 
-    Float grossIncome;
-    Float rrspAmount;
+    Double grossIncome;
+    Double rrspAmount;
 
-    public TaxCalculator(Float grossIncome, Float rrspAmount) {
+    public TaxCalculator(Double grossIncome, Double rrspAmount) {
         this.grossIncome = grossIncome;
         this.rrspAmount = rrspAmount;
     }
 
-    public Float getGrossIncome() {
+    public Double getGrossIncome() {
         return grossIncome;
     }
 
-    public void setGrossIncome(Float grossIncome) {
+    public void setGrossIncome(Double grossIncome) {
         this.grossIncome = grossIncome;
     }
 
-    public Float getRrspAmount() {
+    public Double getRrspAmount() {
         return rrspAmount;
     }
 
-    public void setRrspAmount(Float rrspAmount) {
+    public void setRrspAmount(Double rrspAmount) {
         this.rrspAmount = rrspAmount;
     }
 
-    public double calcTaxRateProvince(Float grossIncome)
+    public double calcTaxRateProvince(Double grossIncome)
     {
         if(grossIncome <= 10582) {
             return 0.0;
@@ -71,5 +71,36 @@ public class TaxCalculator {
         else {
             return 33;
         }
+    }
+
+    public double calcCPP()
+    {
+        double cpp;
+        if(this.grossIncome >= 57400)
+        {
+            cpp = 57400*0.051;
+        }
+        else {
+            cpp = grossIncome*0.051;
+        }
+        return cpp;
+    }
+
+    public boolean maxRRSP()
+    {
+        double rrsp = 0.0;
+        if(rrsp >= this.grossIncome*0.18)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public double calcRRSP()
+    {
+        return this.rrspAmount * 0.18;
     }
 }
