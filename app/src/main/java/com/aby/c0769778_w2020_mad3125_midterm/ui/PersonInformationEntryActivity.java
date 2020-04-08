@@ -33,11 +33,15 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         //------- INIT AND SETTING FIELDS -------
         initialization();
         valueSetter();
+        addingDatePicker();
 
         //------- CODE TO PLAY CUSTOM AUDIO ON SCREEN LOAD -------
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.formfilloice);
         mp.start();
+    }
 
+    private void addingDatePicker()
+    {
         edtDateText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,11 +75,11 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         imgApprove = findViewById(R.id.imgApprove);
         edtDateText = findViewById(R.id.edtDateText);
         edtDate = findViewById(R.id.edtDate);
-
     }
 
     private void valueSetter()
     {
         imgApprove.setImageResource(R.drawable.approve_icon);
     }
+
 }
