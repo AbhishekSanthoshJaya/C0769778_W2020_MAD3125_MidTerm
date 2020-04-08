@@ -361,7 +361,6 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/round_edittext"
                 android:cursorVisible="true"
-                android:focusable="false"
                 android:fontFamily="@font/acme"
                 android:hint="RRSP CONTRIBUTED"
                 android:textColor="#050000"

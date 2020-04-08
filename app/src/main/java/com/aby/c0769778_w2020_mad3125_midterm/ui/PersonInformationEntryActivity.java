@@ -17,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aby.c0769778_w2020_mad3125_midterm.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -29,9 +30,12 @@ import org.joda.time.Years;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Month;
 import java.time.Period;
 import java.util.Calendar;
+import java.util.Date;
 
 public class PersonInformationEntryActivity extends AppCompatActivity {
 
@@ -63,6 +67,13 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
     Long sinNumberNums;
 
     @Override
+    protected void onStart()
+    {
+        super.onStart();
+        clearFields();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -72,7 +83,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         valueSetter();
         addingDatePicker();
         filingDateWarning();
-        sinValidations();
+        //sinValidations();
         //------- CODE TO PLAY CUSTOM AUDIO ON SCREEN LOAD -------
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.formfilloice);
         mp.start();
@@ -89,9 +100,10 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+            clearFields();
             }
         });
+
     }
 
     private void initialization()
@@ -123,10 +135,9 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         imgApprove.setImageResource(R.drawable.approve_icon);
 
         LocalDate date = LocalDate.now();
-        DateTimeFormatter fmt = DateTimeFormat.forPattern("d - MMM - yyyy");
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("dd - MMM - yyyy");
         edtFilingDateText.setText(date.toString(fmt));
     }
-
 
     private Integer getCount(long n)
     {
@@ -138,30 +149,12 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         return count;
     }
 
-    private void sinValidations() {
-            edtSINText.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    sinNumber = edtSINText.getText().toString();
-                    if (sinNumber != null) {
-                        sinNumberNums = Long.parseLong(sinNumber);
-                        if (getCount(sinNumberNums) != 9) {
-                            edtSINText.setError("Please enter a 9 digit number");
-                        }
-                    }
-                }
-            });
+    public boolean sinValidationsRegex()
+    {
+        return edtSINText.getText().toString().matches("^(\\d{3}-\\d{3}-\\d{3})|(\\d{9})$");
     }
+
     private void filingDateWarning()
     {
         edtFilingDateText.setOnClickListener(new View.OnClickListener() {
@@ -202,17 +195,18 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
 
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+            public void onDateSet(DatePicker datePicker, int year, int month, int day)
+            {
                 String date;
                 month = month + 1;
                 String monthName = getMonthName(month);
                 if(day>9)
                     {
-                        date = day + " - " + monthName + " - " + year;
+                        date = day + "-" + monthName + "-" + year;
                     }
                 else
                     {
-                        date = "0"+day + " - " + monthName + " - " + year;
+                        date = "0"+day + "-" + monthName + "-" + year;
                     }
                 edtDateText.setText(date);
             }
@@ -224,23 +218,36 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         return monthNames[monthNumber-1];
     }
 
-    public int calcAge(org.joda.time.LocalDate birthDate, org.joda.time.LocalDate currentDate) {
-        Years age = Years.yearsBetween(birthDate, currentDate);
-        return age.getYears();
+    private int calcAge(String s) {
+        int age = 0;
+        if(edtDateText.getText() != null)
+        {
+            s = edtDateText.getText().toString();
+            age = LocalDate.now().getYear() - stringToDate(s).getYear();
+        }
+        Toast.makeText(PersonInformationEntryActivity.this, age, Toast.LENGTH_SHORT).show();
+        return age;
+    }
+
+    private LocalDate stringToDate(String aDate)
+    {
+        String pattern = "dd - MM - yyyy";
+        DateTimeFormatter df =DateTimeFormat.forPattern("dd - MM - yyyy");
+        //long millis = df.parseMillis(aDate);
+        return df.parseLocalDate(aDate);
     }
 
     public void clearFields()
     {
-        edtGrossIncomeText.getText().clear();
         edtSINText.getText().clear();
         edtFirstNameText.getText().clear();
         edtLastNameText.getText().clear();
-        edtRRSPText.getText().clear();
         edtDateText.getText().clear();
-        edtFilingDateText.getText().clear();
+        edtGrossIncomeText.getText().clear();
+        edtRRSPText.getText().clear();
 
-        rdBtnFulltime.setChecked(false);
-        rdBtnParttime.setChecked(false);
-        rdBtnTrainee.setChecked(false);
+        rdBtnOther.setChecked(false);
+        rdBtnMale.setChecked(false);
+        rdBtnFemale.setChecked(false);
     }
 }
