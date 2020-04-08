@@ -94,16 +94,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CRACustomer craCustomer = new CRACustomer(edtSINText.getText().toString(),
-                        edtFirstNameText.getText().toString(),
-                        edtLastNameText.getText().toString(),
-                        getGender(),
-                        stringToDate(edtDateText.getText().toString()),
-                        Float.parseFloat(edtGrossIncomeText.getText().toString()),
-                        Float.parseFloat(edtRRSPText.getText().toString()));
-                Intent mIntent = new Intent(PersonInformationEntryActivity.this, TaxDataDetailsActivity.class);
-                mIntent.putExtra("CRACustomer", craCustomer);
-                startActivity(mIntent);
+                emptyFieldChecker();
             }
         });
 
@@ -113,7 +104,6 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
             clearFields();
             }
         });
-
     }
 
     private void initialization()
@@ -149,6 +139,58 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         edtFilingDateText.setText(date.toString(fmt));
     }
 
+    public void emptyFieldChecker()
+    {
+        boolean someFlag = false;
+        if(edtSINText.getText().toString().isEmpty())
+        {
+            edtSIN.setError("Please enter your SIN");
+            someFlag = true;
+            return;
+        }
+        if(edtFirstNameText.getText().toString().isEmpty()){
+            edtFirstName.setError("Please enter your first name");
+            someFlag = true;
+            return;
+        }
+        if(edtLastNameText.getText().toString().isEmpty())
+        {
+            edtLastName.setError("Please enter your date of birth");
+            someFlag = true;
+            return;
+        }
+        if(edtDateText.getText().toString().isEmpty())
+        {
+            edtDate.setError("Please enter your date of birth");
+            someFlag = true;
+            return;
+        }
+        if(edtGrossIncomeText.getText().toString().isEmpty())
+        {
+            edtGrossIncome.setError("Please enter your date of birth");
+            someFlag = true;
+            return;
+        }
+        if(edtRRSPText.getText().toString().isEmpty())
+        {
+            edtRRSP.setError("Please enter your date of birth");
+            someFlag = true;
+            return;
+        }
+        if(!someFlag)
+        {
+            CRACustomer craCustomer = new CRACustomer(edtSINText.getText().toString(),
+                    edtFirstNameText.getText().toString(),
+                    edtLastNameText.getText().toString(),
+                    getGender(),
+                    stringToDate(edtDateText.getText().toString()),
+                    Float.parseFloat(edtGrossIncomeText.getText().toString()),
+                    Float.parseFloat(edtRRSPText.getText().toString()));
+            Intent mIntent = new Intent(PersonInformationEntryActivity.this, TaxDataDetailsActivity.class);
+            mIntent.putExtra("CRACustomer", craCustomer);
+            startActivity(mIntent);
+        }
+    }
     private Integer getCount(long n)
     {
         int count = 0;
@@ -234,8 +276,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
 
     private LocalDate stringToDate(String aDate)
     {
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd-MMMM-yyyy");
-        //long millis = df.parseMillis(aDate);
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd-MMM-yyyy");
         return formatter.parseLocalDate(aDate);
     }
 
