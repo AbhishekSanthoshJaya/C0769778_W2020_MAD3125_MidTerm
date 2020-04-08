@@ -103,4 +103,18 @@ public class TaxCalculator {
     {
         return this.rrspAmount * 0.18;
     }
+
+    public double calcEI()
+    {
+        double ei;
+        if(this.grossIncome >= 53100)
+        {
+            ei = 53100*0.0162;
+        }
+        else
+        {
+            ei = grossIncome*0.0162;
+        }
+        return ei;
+    }
 }
