@@ -112,7 +112,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.442">
+            app:layout_constraintVertical_bias="0.442"
+            app:startIconDrawable="@android:drawable/ic_menu_preferences">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtSINText"
@@ -182,7 +183,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@android:drawable/ic_menu_month">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtDateText"
@@ -275,7 +277,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@android:drawable/ic_menu_month">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtFilingDateText"
@@ -314,7 +317,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:startIconDrawable="@drawable/dollaricon">
+            app:startIconDrawable="@drawable/dollaricon2">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtGrossIncomeText"
@@ -349,7 +352,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/dollaricon2">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtRRSPtext"
@@ -364,6 +368,43 @@
                 android:textColorHint="#050000"
                 android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="238dp"
+            android:layout_marginBottom="74dp"
+            android:background="@color/colorPrimaryDark"
+            android:drawableRight="@android:drawable/ic_menu_upload"
+            android:text="SUBMIT"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtRRSP" />
+
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="63dp"
+            android:layout_marginTop="61dp"
+            android:layout_marginEnd="87dp"
+            android:layout_marginBottom="73dp"
+            android:background="#EC1010"
+            android:backgroundTint="#FD4949"
+            android:drawableRight="@android:drawable/ic_delete"
+            android:text="CLEAR"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnSubmit"
+            app:layout_constraintTop_toBottomOf="@+id/edtRRSP" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,12 +36,16 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
 
     private ImageView imgApprove;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+
     private TextInputEditText edtDateText;
     private TextInputLayout edtDate;
     private TextInputLayout edtFilingDate;
     private TextInputEditText edtFilingDateText;
     private TextInputEditText edtSINText;
     private TextInputLayout edtSIN;
+
+    private Button btnSubmit;
+    private Button btnClear;
 
     String sinNumber;
     Long sinNumberNums;
@@ -58,6 +64,22 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         //------- CODE TO PLAY CUSTOM AUDIO ON SCREEN LOAD -------
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.formfilloice);
         mp.start();
+
+        //------- FORM BUTTON METHODS -------
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent(PersonInformationEntryActivity.this, TaxDataDetailsActivity.class);
+                startActivity(mIntent);
+            }
+        });
+
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void initialization()
@@ -69,6 +91,8 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         edtFilingDate = findViewById(R.id.edtFilingDate);
         edtSIN = findViewById(R.id.edtSIN);
         edtSINText = findViewById(R.id.edtSINText);
+        btnClear = findViewById(R.id.btnClear);
+        btnSubmit = findViewById(R.id.btnSubmit);
     }
 
     private void valueSetter()
@@ -79,6 +103,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         DateTimeFormatter fmt = DateTimeFormat.forPattern("d - MMM - yyyy");
         edtFilingDateText.setText(date.toString(fmt));
     }
+
 
     private Integer getCount(long n)
     {
