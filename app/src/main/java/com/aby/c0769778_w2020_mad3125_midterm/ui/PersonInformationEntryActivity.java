@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aby.c0769778_w2020_mad3125_midterm.R;
+import com.aby.c0769778_w2020_mad3125_midterm.model.CRACustomer;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -92,7 +94,15 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CRACustomer craCustomer = new CRACustomer(edtSINText.getText().toString(),
+                        edtFirstNameText.getText().toString(),
+                        edtLastNameText.getText().toString(),
+                        getGender(),
+                        stringToDate(edtDateText.getText().toString()),
+                        Float.parseFloat(edtGrossIncomeText.getText().toString()),
+                        Float.parseFloat(edtRRSPText.getText().toString()));
                 Intent mIntent = new Intent(PersonInformationEntryActivity.this, TaxDataDetailsActivity.class);
+                mIntent.putExtra("CRACustomer", craCustomer);
                 startActivity(mIntent);
             }
         });
@@ -135,7 +145,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         imgApprove.setImageResource(R.drawable.approve_icon);
 
         LocalDate date = LocalDate.now();
-        DateTimeFormatter fmt = DateTimeFormat.forPattern("dd - MMM - yyyy");
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("dd-MMM-yyyy");
         edtFilingDateText.setText(date.toString(fmt));
     }
 
@@ -200,14 +210,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
                 String date;
                 month = month + 1;
                 String monthName = getMonthName(month);
-                if(day>9)
-                    {
-                        date = day + "-" + monthName + "-" + year;
-                    }
-                else
-                    {
-                        date = "0"+day + "-" + monthName + "-" + year;
-                    }
+                date = day + "-" + monthName + "-" + year;
                 edtDateText.setText(date);
             }
         };
@@ -231,10 +234,24 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
 
     private LocalDate stringToDate(String aDate)
     {
-        String pattern = "dd - MM - yyyy";
-        DateTimeFormatter df =DateTimeFormat.forPattern("dd - MM - yyyy");
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd-MMMM-yyyy");
         //long millis = df.parseMillis(aDate);
-        return df.parseLocalDate(aDate);
+        return formatter.parseLocalDate(aDate);
+    }
+
+    public CRACustomer.Gender getGender()
+    {
+        if (rdBtnMale.isChecked()){
+            return CRACustomer.Gender.Male;
+        }
+        else if (rdBtnFemale.isChecked()) {
+            return CRACustomer.Gender.Female;
+        }
+        else if(rdBtnOther.isChecked())
+        {
+            return CRACustomer.Gender.Other;
+        }
+        return null;
     }
 
     public void clearFields()
