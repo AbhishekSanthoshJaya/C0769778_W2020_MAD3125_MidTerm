@@ -3,6 +3,7 @@ package com.aby.c0769778_w2020_mad3125_midterm.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
@@ -13,13 +14,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aby.c0769778_w2020_mad3125_midterm.R;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.joda.time.LocalDate;
 import org.joda.time.PeriodType;
 import org.joda.time.Years;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
-import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
 import java.util.Calendar;
@@ -30,22 +34,61 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private TextInputEditText edtDateText;
     private TextInputLayout edtDate;
+    private TextInputLayout edtFilingDate;
+    private TextInputEditText edtFilingDateText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //------- INIT AND SETTING FIELDS -------
+        //------- INIT, SETTING FIELDS, BASIC METHODS -------
         initialization();
         valueSetter();
         addingDatePicker();
+        filingDateWarning();
 
         //------- CODE TO PLAY CUSTOM AUDIO ON SCREEN LOAD -------
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.formfilloice);
         mp.start();
     }
 
+    private void initialization()
+    {
+        imgApprove = findViewById(R.id.imgApprove);
+        edtDateText = findViewById(R.id.edtDateText);
+        edtDate = findViewById(R.id.edtDate);
+        edtFilingDateText = findViewById(R.id.edtFilingDateText);
+        edtFilingDate = findViewById(R.id.edtFilingDate);
+    }
+
+    private void valueSetter()
+    {
+        imgApprove.setImageResource(R.drawable.approve_icon);
+
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("d - MMM - yyyy");
+        edtFilingDateText.setText(date.toString(fmt));
+    }
+
+    private void filingDateWarning()
+    {
+        edtFilingDateText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new MaterialAlertDialogBuilder(PersonInformationEntryActivity.this)
+                        .setTitle("Invalid Action")
+                        .setMessage("This field cannot be changed")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+    }
     private void addingDatePicker()
     {
         edtDateText.setOnClickListener(new View.OnClickListener() {
@@ -85,26 +128,12 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         };
     }
 
-    private void initialization()
-    {
-        imgApprove = findViewById(R.id.imgApprove);
-        edtDateText = findViewById(R.id.edtDateText);
-        edtDate = findViewById(R.id.edtDate);
-    }
-
-    private void valueSetter()
-    {
-        imgApprove.setImageResource(R.drawable.approve_icon);
-    }
-
     public static String getMonthName(int monthNumber){
         String[] monthNames = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
         return monthNames[monthNumber-1];
     }
 
-    public int calcAge(
-            org.joda.time.LocalDate birthDate,
-            org.joda.time.LocalDate currentDate) {
+    public int calcAge(org.joda.time.LocalDate birthDate, org.joda.time.LocalDate currentDate) {
         Years age = Years.yearsBetween(birthDate, currentDate);
         return age.getYears();
     }
