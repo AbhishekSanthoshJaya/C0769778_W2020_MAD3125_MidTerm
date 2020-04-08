@@ -177,6 +177,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
             someFlag = true;
             return;
         }
+
         if(!someFlag)
         {
             CRACustomer craCustomer = new CRACustomer(edtSINText.getText().toString(),
