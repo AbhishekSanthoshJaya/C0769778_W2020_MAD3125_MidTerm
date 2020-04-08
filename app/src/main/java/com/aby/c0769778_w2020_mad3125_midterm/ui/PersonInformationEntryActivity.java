@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.aby.c0769778_w2020_mad3125_midterm.R;
 import com.aby.c0769778_w2020_mad3125_midterm.model.CRACustomer;
+import com.aby.c0769778_w2020_mad3125_midterm.util.HelperMethods;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -184,7 +185,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
                     edtFirstNameText.getText().toString(),
                     edtLastNameText.getText().toString(),
                     getGender(),
-                    stringToDate(edtDateText.getText().toString()),
+                    HelperMethods.getInstance().stringToDate(edtDateText.getText().toString()),
                     Float.parseFloat(edtGrossIncomeText.getText().toString()),
                     Float.parseFloat(edtRRSPText.getText().toString()));
             Intent mIntent = new Intent(PersonInformationEntryActivity.this, TaxDataDetailsActivity.class);
@@ -269,17 +270,12 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         if(edtDateText.getText() != null)
         {
             s = edtDateText.getText().toString();
-            age = LocalDate.now().getYear() - stringToDate(s).getYear();
+            age = LocalDate.now().getYear() - HelperMethods.getInstance().stringToDate(s).getYear();
         }
         Toast.makeText(PersonInformationEntryActivity.this, age, Toast.LENGTH_SHORT).show();
         return age;
     }
 
-    private LocalDate stringToDate(String aDate)
-    {
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd-MMM-yyyy");
-        return formatter.parseLocalDate(aDate);
-    }
 
     public CRACustomer.Gender getGender()
     {

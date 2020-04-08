@@ -125,7 +125,7 @@ public class CRACustomer implements Parcelable
         this.birthDate = birthDate;
     }
 
-    public Float getGrossIncome() {
+    public double getGrossIncome() {
         return grossIncome;
     }
 
@@ -133,7 +133,7 @@ public class CRACustomer implements Parcelable
         this.grossIncome = grossIncome;
     }
 
-    public Float getRrspContributed() {
+    public double getRrspContributed() {
         return rrspContributed;
     }
 
