@@ -99,14 +99,17 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
+
                 }
 
                 @Override
                 public void afterTextChanged(Editable s) {
                     sinNumber = edtSINText.getText().toString();
-                    sinNumberNums = Long.parseLong(sinNumber);
-                    if (getCount(sinNumberNums) != 9) {
-                        edtSINText.setError("Please enter a 9 digit number");
+                    if (sinNumber != null) {
+                        sinNumberNums = Long.parseLong(sinNumber);
+                        if (getCount(sinNumberNums) != 9) {
+                            edtSINText.setError("Please enter a 9 digit number");
+                        }
                     }
                 }
             });

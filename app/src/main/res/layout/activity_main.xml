@@ -46,7 +46,8 @@
                 android:fontFamily="@font/acme"
                 android:hint="FIRST NAME"
                 android:textColor="#050000"
-                android:textColorHint="#050000" />
+                android:textColorHint="#050000"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -83,7 +84,8 @@
                 android:fontFamily="@font/acme"
                 android:hint="LAST NAME"
                 android:textColor="#050000"
-                android:textColorHint="#050000" />
+                android:textColorHint="#050000"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -121,7 +123,8 @@
                 android:fontFamily="@font/acme"
                 android:hint="ENTER YOUR SIN"
                 android:textColor="#050000"
-                android:textColorHint="#050000" />
+                android:textColorHint="#050000"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -187,11 +190,12 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/round_edittext"
                 android:cursorVisible="true"
+                android:focusable="false"
                 android:fontFamily="@font/acme"
                 android:hint="BIRTH DATE"
-                android:focusable="false"
                 android:textColor="#050000"
-                android:textColorHint="#050000" />
+                android:textColorHint="#050000"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
@@ -279,11 +283,12 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/round_edittext"
                 android:cursorVisible="true"
+                android:editable="false"
                 android:fontFamily="@font/acme"
                 android:hint="DATE OF FILING"
-                android:editable="false"
                 android:textColor="#050000"
-                android:textColorHint="#050000" />
+                android:textColorHint="#050000"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -309,7 +314,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:startIconDrawable="@drawable/dollarIcon">
+            app:startIconDrawable="@drawable/dollaricon">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtGrossIncomeText"
@@ -320,7 +325,44 @@
                 android:fontFamily="@font/acme"
                 android:hint="GROSS INCOME"
                 android:textColor="#050000"
-                android:textColorHint="#050000" />
+                android:textColorHint="#050000"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtRRSP"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="608dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColorHint="#000000"
+            app:boxStrokeColor="#FFFFFF"
+            app:boxStrokeErrorColor="#FFFFFF"
+            app:boxStrokeWidth="4dp"
+            app:errorEnabled="false"
+            app:errorTextColor="#FFFFFF"
+            app:hintTextColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtRRSPtext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_edittext"
+                android:cursorVisible="true"
+                android:focusable="false"
+                android:fontFamily="@font/acme"
+                android:hint="RRSP CONTRIBUTED"
+                android:textColor="#050000"
+                android:textColorHint="#050000"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
