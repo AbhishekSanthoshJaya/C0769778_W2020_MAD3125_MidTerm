@@ -8,7 +8,7 @@ import org.joda.time.LocalDate;
 public class CRACustomer implements Parcelable
 {
 
-    public CRACustomer(String SIN, String firstName, String lastName, Gender gender, LocalDate birthDate, Float grossIncome, Float rrspContributed) {
+    public CRACustomer(String SIN, String firstName, String lastName, Gender gender, LocalDate birthDate, Double grossIncome, Double rrspContributed) {
         this.SIN = SIN;
         this.firstName = firstName;
         this.lastName = lastName;

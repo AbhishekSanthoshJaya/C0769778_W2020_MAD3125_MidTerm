@@ -1,9 +1,11 @@
 package com.aby.c0769778_w2020_mad3125_midterm.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.solver.widgets.Helper;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -13,7 +15,7 @@ import com.aby.c0769778_w2020_mad3125_midterm.util.HelperMethods;
 import com.aby.c0769778_w2020_mad3125_midterm.util.TaxCalculator;
 
 public class TaxDataDetailsActivity extends AppCompatActivity {
-    TextView txtSin, txtFullName, txtBirthDate, txtGender, txtAge, txtGrossIncome, txtFederalTax, txtProvincialTax, txtCPP, txtEI, txtCarry, txtTotalTaxIncome, txtTotalTax;
+    TextView txtRRSP, txtSin, txtFullName, txtBirthDate, txtGender, txtAge, txtGrossIncome, txtFederalTax, txtProvincialTax, txtCPP, txtEI, txtCarry, txtTotalTaxIncome, txtTotalTax;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,16 +27,34 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         String lastName = craCustomer.getLastName().toUpperCase();
         String fullName = lastName + ", " +firstName;
         txtFullName.setText(fullName);
-        txtGrossIncome.setText(Double.toString(craCustomer.getGrossIncome()));
+        txtGrossIncome.setText(HelperMethods.getInstance().doubleFormatter(craCustomer.getGrossIncome()));
         //txtBirthDate.setText(craCustomer.getBirthDate().toString());
         //txtGender.setText(craCustomer.getGender().toString());
         TaxCalculator taxCalculator = new TaxCalculator(craCustomer.getGrossIncome(), craCustomer.getRrspContributed());
-        String provincialTax = Double.toString(taxCalculator.calcTaxProvince(craCustomer.getGrossIncome()));
-        String federalTax = Double.toString(taxCalculator.calcTaxFederal(craCustomer.getGrossIncome()));
-        String CPP = Double.toString(taxCalculator.calcCPP(craCustomer.getGrossIncome()));
-        //txtProvincialTax.setText(provincialTax);
-        txtFederalTax.setText(federalTax);
+        String provincialTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxProvince(craCustomer.getGrossIncome()));
+        String federalTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxFederal(craCustomer.getGrossIncome()));
+        String CPP = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcCPP(craCustomer.getGrossIncome()));
+        txtProvincialTax.setText("province" + provincialTax);
+        txtFederalTax.setText("fed" + federalTax);
         txtCPP.setText(CPP);
+        txtRRSP.setText(HelperMethods.getInstance().doubleFormatter(craCustomer.getRrspContributed()));
+
+
+        double maxRRSP =  0.18d * craCustomer.getGrossIncome();
+        if(craCustomer.getRrspContributed() > maxRRSP)
+        {
+            Double finalCarry = craCustomer.getRrspContributed() - maxRRSP;
+            txtCarry.setText(HelperMethods.getInstance().doubleFormatter(finalCarry));
+            txtCarry.setTextColor(getResources().getColor(R.color.colorRed));
+            txtBirthDate.setText(HelperMethods.getInstance().doubleFormatter(maxRRSP));
+            txtCarry.setTypeface(null,Typeface.BOLD);
+        }
+        else
+        {
+            Double finalCarry =  maxRRSP - craCustomer.getRrspContributed();
+            txtCarry.setText(HelperMethods.getInstance().doubleFormatter(finalCarry));
+        }
+
     }
 
     public void initialization2()
@@ -45,6 +65,11 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         txtGender = findViewById(R.id.txtGender);
         txtAge = findViewById(R.id.txtAge);
         txtGrossIncome = findViewById(R.id.txtGrossIncome);
+        txtFederalTax = findViewById(R.id.txtFederalTax);
+        txtProvincialTax = findViewById(R.id.txtProvincialTax);
+        txtCPP = findViewById(R.id.txtCPP);
+        txtCarry = findViewById(R.id.txtCarryForward);
+        txtRRSP = findViewById(R.id.txtRRSP);
     }
 }
 

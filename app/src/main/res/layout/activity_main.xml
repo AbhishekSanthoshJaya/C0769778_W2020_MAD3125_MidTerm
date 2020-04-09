@@ -378,7 +378,7 @@
             android:layout_marginBottom="74dp"
             android:background="@color/colorPrimaryDark"
             android:drawableRight="@android:drawable/ic_menu_upload"
-            android:text="SUBMIT"
+            android:text="CALCULATE"
             android:textColor="#000000"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"

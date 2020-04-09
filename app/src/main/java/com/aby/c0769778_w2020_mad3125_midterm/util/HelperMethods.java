@@ -18,4 +18,9 @@ public class HelperMethods {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("dd-MMM-yyyy");
         return formatter.parseLocalDate(aDate);
     }
+
+    public String doubleFormatter(Double d)
+    {
+        return String.format("%.2f", d);
+    }
 }

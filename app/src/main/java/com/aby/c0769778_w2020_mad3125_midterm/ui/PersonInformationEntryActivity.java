@@ -186,8 +186,8 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
                     edtLastNameText.getText().toString(),
                     getGender(),
                     HelperMethods.getInstance().stringToDate(edtDateText.getText().toString()),
-                    Float.parseFloat(edtGrossIncomeText.getText().toString()),
-                    Float.parseFloat(edtRRSPText.getText().toString()));
+                    Double.parseDouble(edtGrossIncomeText.getText().toString()),
+                    Double.parseDouble(edtRRSPText.getText().toString()));
             Intent mIntent = new Intent(PersonInformationEntryActivity.this, TaxDataDetailsActivity.class);
             mIntent.putExtra("CRACustomer", craCustomer);
             startActivity(mIntent);
