@@ -36,11 +36,12 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         String federalTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxFederal(craCustomer.getGrossIncome()));
         String CPP = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcCPP(craCustomer.getGrossIncome()));
         String EI = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcEI(craCustomer.getGrossIncome()));
+        double totalTax = Double.parseDouble(provincialTax) + Double.parseDouble(federalTax);
         txtProvincialTax.setText("province" + provincialTax);
         txtFederalTax.setText("fed" + federalTax);
         txtCPP.setText(CPP);
         txtEI.setText(EI);
-        txtTotalTax.setText("totaltax" + Double.parseDouble(provincialTax) + Double.parseDouble(federalTax));
+        txtTotalTax.setText(HelperMethods.getInstance().doubleFormatter(totalTax));
         txtRRSP.setText(HelperMethods.getInstance().doubleFormatter(craCustomer.getRrspContributed()));
 
 
@@ -89,11 +90,6 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         txtEI = findViewById(R.id.txtEI);
         txtTotalTaxIncome = findViewById(R.id.txtTotalTaxIncome);
         txtTotalTax = findViewById(R.id.txtTaxPayed);
-
-    }
-
-    public void getRRSP()
-    {
 
     }
 }
