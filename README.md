@@ -26,5 +26,9 @@ eligible to file tax for current year 2019” in RED Bold color
 ## REFERENCES
 * [Youtube.com](https://www.youtube.com/watch?v=hwe1abDO2Ag) - Creating a datePicker
 * [Android.jlelse.eu](https://android.jlelse.eu/the-complete-android-splash-screen-guide-c7db82bce565) - Creating a splashscreen
-* [StackOverFlow.com](https://stackoverflow.com/questions/3646415/how-to-create-edittext-with-rounded-corners) - Creating custom textboxes
+* [Stackoverflow.com](https://stackoverflow.com/questions/3646415/how-to-create-edittext-with-rounded-corners) - Creating custom textboxes
 * [Joda.org](https://www.joda.org/joda-time/index.html) - Working with Joda-Time
+* [Howtodoinjava.org](https://howtodoinjava.com/java/calculate-age-from-date-of-birth/) - Calculating age using Joda
+* [Stackoverflow.com](https://stackoverflow.com/questions/20082855/regular-expression-for-canadian-sin-social-insurance-number) - SIN validation regex
+* [Sitepoint.com](https://www.sitepoint.com/transfer-data-between-activities-with-android-parcelable/) - Data transfer between activities using parcelable
+* [Journaldev.com](https://www.journaldev.com/14748/android-textinputlayout-example) - Working with textfields using Material Design
