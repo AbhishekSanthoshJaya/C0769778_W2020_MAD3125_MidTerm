@@ -23,6 +23,14 @@ eligible to file tax for current year 2019” in RED Bold color
 9. Passing Data to next screen as an Object (Implement Parcelable)
 10. Appropriate screen design and icons
 
+## PROJECT OUTPUT
+Screenshot | Description
+--- | ---
+<img src="https://i93.servimg.com/u/f93/18/45/29/87/dataen10.png" alt="DataEntry"/> | Data entry screen for the app. Has checks on each field to see if it is empty. Date of filing is set to currentdate. Touching date of filing field will bring up a material alert dialog warning the user.
+<img src="https://i93.servimg.com/u/f93/18/45/29/87/datepi10.png" alt="datepicker"/> | On touching the birthdate field, a date picker pops up.
+<img src="https://i93.servimg.com/u/f93/18/45/29/87/dataen10.png" alt="DataEntry"/> | Data entry screen for the app. Has checks on each field to see if it is empty. Date of filing is set to currentdate. Touching date of filing field will bring up a material alert dialog warning the user.
+
+
 ## REFERENCES
 * [Youtube.com](https://www.youtube.com/watch?v=hwe1abDO2Ag) - Creating a datePicker
 * [Android.jlelse.eu](https://android.jlelse.eu/the-complete-android-splash-screen-guide-c7db82bce565) - Creating a splashscreen
