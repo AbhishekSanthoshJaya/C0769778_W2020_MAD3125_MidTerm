@@ -88,10 +88,11 @@ public class TaxCalculator {
 
     public double calcRRSP()
     {
+
         return this.rrspAmount * 0.18;
     }
 
-    public double calcEI()
+    public double calcEI(double grossIncome)
     {
         double ei;
         if(this.grossIncome >= 53100)

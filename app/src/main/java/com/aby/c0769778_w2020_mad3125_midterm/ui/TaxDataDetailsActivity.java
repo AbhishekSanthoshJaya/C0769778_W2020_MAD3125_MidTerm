@@ -27,6 +27,7 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         String lastName = craCustomer.getLastName().toUpperCase();
         String fullName = lastName + ", " +firstName;
         txtFullName.setText(fullName);
+        txtSin.setText(craCustomer.getSIN());
         txtGrossIncome.setText(HelperMethods.getInstance().doubleFormatter(craCustomer.getGrossIncome()));
         //txtBirthDate.setText(craCustomer.getBirthDate().toString());
         //txtGender.setText(craCustomer.getGender().toString());
@@ -34,19 +35,34 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         String provincialTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxProvince(craCustomer.getGrossIncome()));
         String federalTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxFederal(craCustomer.getGrossIncome()));
         String CPP = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcCPP(craCustomer.getGrossIncome()));
+        String EI = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcEI(craCustomer.getGrossIncome()));
         txtProvincialTax.setText("province" + provincialTax);
         txtFederalTax.setText("fed" + federalTax);
         txtCPP.setText(CPP);
+        txtEI.setText(EI);
+        txtTotalTax.setText("totaltax" + Double.parseDouble(provincialTax) + Double.parseDouble(federalTax));
         txtRRSP.setText(HelperMethods.getInstance().doubleFormatter(craCustomer.getRrspContributed()));
 
+
+         if(craCustomer.getRrspContributed() == 0)
+         {
+             String RRSP = HelperMethods.getInstance().doubleFormatter(craCustomer.getGrossIncome() * 0.18d);
+             double totalTaxableIncome = craCustomer.getGrossIncome() - (Double.parseDouble(EI) - Double.parseDouble(CPP) + Double.parseDouble(RRSP));
+             txtTotalTaxIncome.setText(HelperMethods.getInstance().doubleFormatter(totalTaxableIncome));
+         }
+         else
+         {
+             String RRSP = HelperMethods.getInstance().doubleFormatter(craCustomer.getRrspContributed());
+             double totalTaxableIncome = craCustomer.getGrossIncome() - (Double.parseDouble(EI) - Double.parseDouble(CPP) + Double.parseDouble(RRSP));
+             txtTotalTaxIncome.setText(HelperMethods.getInstance().doubleFormatter(totalTaxableIncome));
+         }
 
         double maxRRSP =  0.18d * craCustomer.getGrossIncome();
         if(craCustomer.getRrspContributed() > maxRRSP)
         {
             Double finalCarry = craCustomer.getRrspContributed() - maxRRSP;
-            txtCarry.setText(HelperMethods.getInstance().doubleFormatter(finalCarry));
+            txtCarry.setText("-"+HelperMethods.getInstance().doubleFormatter(finalCarry));
             txtCarry.setTextColor(getResources().getColor(R.color.colorRed));
-            txtBirthDate.setText(HelperMethods.getInstance().doubleFormatter(maxRRSP));
             txtCarry.setTypeface(null,Typeface.BOLD);
         }
         else
@@ -70,6 +86,15 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         txtCPP = findViewById(R.id.txtCPP);
         txtCarry = findViewById(R.id.txtCarryForward);
         txtRRSP = findViewById(R.id.txtRRSP);
+        txtEI = findViewById(R.id.txtEI);
+        txtTotalTaxIncome = findViewById(R.id.txtTotalTaxIncome);
+        txtTotalTax = findViewById(R.id.txtTaxPayed);
+
+    }
+
+    public void getRRSP()
+    {
+
     }
 }
 
