@@ -56,6 +56,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
 
     private Button btnSubmit;
     private Button btnClear;
+    private Button btnOK;
 
     String sinNumber;
     Long sinNumberNums;
@@ -80,7 +81,6 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         filingDateWarning();
         //sinValidations();
 
-        txtAgeWarning.setVisibility(View.INVISIBLE);
         //------- CODE TO PLAY CUSTOM AUDIO ON SCREEN LOAD -------
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.formfilloice);
         mp.start();
@@ -97,6 +97,17 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
             clearFields();
+            }
+        });
+
+        btnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnClear.setVisibility(View.VISIBLE);
+                btnSubmit.setVisibility(View.VISIBLE);
+                txtAgeWarning.setVisibility(View.INVISIBLE);
+                edtDateText.getText().clear();
+                btnOK.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -124,6 +135,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         rdBtnMale = findViewById(R.id.rdBtnMale);
         rdBtnOther = findViewById(R.id.rdBtnOther);
         txtAgeWarning = findViewById(R.id.txtAgeWarning);
+        btnOK = findViewById(R.id.btnOK);
     }
 
     private void valueSetter()
@@ -133,6 +145,9 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         LocalDate date = LocalDate.now();
         DateTimeFormatter fmt = DateTimeFormat.forPattern("dd-MMM-yyyy");
         edtFilingDateText.setText(date.toString(fmt));
+
+        txtAgeWarning.setVisibility(View.INVISIBLE);
+        btnOK.setVisibility(View.INVISIBLE);
     }
 
     public void fieldChecker()
@@ -193,6 +208,8 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
                 txtAgeWarning.setVisibility(View.VISIBLE);
                 btnClear.setVisibility(View.INVISIBLE);
                 btnSubmit.setVisibility(View.INVISIBLE);
+                btnOK.setVisibility(View.VISIBLE);
+                edtDate.setError("Enter a valid date of birth");
             }
         }
     }
