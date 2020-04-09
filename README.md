@@ -31,7 +31,7 @@ Screenshot | Description
 <img src="https://i93.servimg.com/u/f93/18/45/29/87/dataen10.png" alt="DataEntry"/> | Data entry screen for the app. An audio hint plays that asks users to fill the form. Has checks on each field to see if it is empty. Date of filing is set to currentdate. Touching date of filing field will bring up a material alert dialog warning the user.
 <img src="https://i93.servimg.com/u/f93/18/45/29/87/datepi10.png" alt="datepicker"/> | On touching the birthdate field, a date picker pops up.
 <img src="https://i.servimg.com/u/f93/18/45/29/87/screen12.png" alt="alert"/> | Alert box shows up on clicking the tax filing date field.
-<img src="https://i93.servimg.com/u/f93/18/45/29/87/age_an10.png" alt="errors"/> | Validations for SIN number using regex and age. Buttons disappear if the applicant is not over 18.
+<img src="https://i93.servimg.com/u/f93/18/45/29/87/age_an10.png" alt="errors"/> | Validations for SIN number using regex and age. Buttons disappear if the applicant is not over 18. TextWatcher removes errors after text change.
 <img src="https://i93.servimg.com/u/f93/18/45/29/87/detail10.png" alt="details1"/> | Details for the customer including all the tax information.
 <img src="https://i93.servimg.com/u/f93/18/45/29/87/detail10.jpg" alt="details2"/> | Second page of details.
 
