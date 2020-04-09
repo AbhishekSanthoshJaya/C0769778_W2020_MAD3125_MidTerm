@@ -26,9 +26,10 @@ eligible to file tax for current year 2019” in RED Bold color
 ## PROJECT OUTPUT
 Screenshot | Description
 --- | ---
-<img src="https://i93.servimg.com/u/f93/18/45/29/87/dataen10.png" alt="DataEntry"/> | Data entry screen for the app. Has checks on each field to see if it is empty. Date of filing is set to currentdate. Touching date of filing field will bring up a material alert dialog warning the user.
+<img src="https://i93.servimg.com/u/f93/18/45/29/87/splash10.jpg" alt="splash"/> | Splash screen that lasts 5 seconds. Used gif handling.
+<img src="https://i93.servimg.com/u/f93/18/45/29/87/dataen10.png" alt="DataEntry"/> | Data entry screen for the app. An audio hint plays that asks users to fill the form. Has checks on each field to see if it is empty. Date of filing is set to currentdate. Touching date of filing field will bring up a material alert dialog warning the user.
 <img src="https://i93.servimg.com/u/f93/18/45/29/87/datepi10.png" alt="datepicker"/> | On touching the birthdate field, a date picker pops up.
-<img src="https://i93.servimg.com/u/f93/18/45/29/87/dataen10.png" alt="DataEntry"/> | Data entry screen for the app. Has checks on each field to see if it is empty. Date of filing is set to currentdate. Touching date of filing field will bring up a material alert dialog warning the user.
+<img src="https://i93.servimg.com/u/f93/18/45/29/87/age_an10.png" alt="errors"/> | Validations for SIN number using regex and age. Buttons disappear if the applicant is not over 18.
 
 
 ## REFERENCES
