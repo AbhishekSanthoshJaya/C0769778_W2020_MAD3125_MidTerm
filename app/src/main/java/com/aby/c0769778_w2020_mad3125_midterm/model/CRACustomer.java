@@ -8,7 +8,7 @@ import org.joda.time.LocalDate;
 public class CRACustomer implements Parcelable
 {
 
-    public CRACustomer(String SIN, String firstName, String lastName, Gender gender, LocalDate birthDate, Double grossIncome, Double rrspContributed) {
+    public CRACustomer(String SIN, String firstName, String lastName, String gender, String birthDate, Double grossIncome, Double rrspContributed) {
         this.SIN = SIN;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,6 +24,8 @@ public class CRACustomer implements Parcelable
         lastName = in.readString();
         grossIncome = in.readDouble();
         rrspContributed = in.readDouble();
+        gender = in.readString();
+        birthDate = in.readString();
     }
 
     public static final Creator<CRACustomer> CREATOR = new Creator<CRACustomer>() {
@@ -50,6 +52,8 @@ public class CRACustomer implements Parcelable
         dest.writeString(lastName);
         dest.writeDouble(grossIncome);
         dest.writeDouble(rrspContributed);
+        dest.writeString(birthDate);
+        dest.writeString(gender);
     }
 
     public enum Gender {
@@ -58,8 +62,8 @@ public class CRACustomer implements Parcelable
     private String SIN;
     private String firstName;
     private String lastName;
-    private Gender gender;
-    private LocalDate birthDate;
+    private String gender;
+    private String birthDate;
     private double grossIncome;
     private double rrspContributed;
 
@@ -92,19 +96,19 @@ public class CRACustomer implements Parcelable
         this.lastName = lastName;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public LocalDate getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 

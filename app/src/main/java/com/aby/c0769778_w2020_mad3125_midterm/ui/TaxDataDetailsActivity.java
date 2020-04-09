@@ -29,8 +29,8 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         txtFullName.setText(fullName);
         txtSin.setText(craCustomer.getSIN());
         txtGrossIncome.setText(HelperMethods.getInstance().doubleFormatter(craCustomer.getGrossIncome()));
-        //txtBirthDate.setText(craCustomer.getBirthDate().toString());
-        //txtGender.setText(craCustomer.getGender().toString());
+        txtBirthDate.setText(craCustomer.getBirthDate());
+        txtGender.setText(craCustomer.getGender());
         TaxCalculator taxCalculator = new TaxCalculator(craCustomer.getGrossIncome(), craCustomer.getRrspContributed());
         String provincialTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxProvince(craCustomer.getGrossIncome()));
         String federalTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxFederal(craCustomer.getGrossIncome()));
@@ -43,7 +43,6 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         txtEI.setText(EI);
         txtTotalTax.setText(HelperMethods.getInstance().doubleFormatter(totalTax));
         txtRRSP.setText(HelperMethods.getInstance().doubleFormatter(craCustomer.getRrspContributed()));
-
 
          if(craCustomer.getRrspContributed() == 0)
          {
@@ -71,7 +70,6 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
             Double finalCarry =  maxRRSP - craCustomer.getRrspContributed();
             txtCarry.setText(HelperMethods.getInstance().doubleFormatter(finalCarry));
         }
-
     }
 
     public void initialization2()
@@ -90,7 +88,6 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         txtEI = findViewById(R.id.txtEI);
         txtTotalTaxIncome = findViewById(R.id.txtTotalTaxIncome);
         txtTotalTax = findViewById(R.id.txtTaxPayed);
-
     }
 }
 

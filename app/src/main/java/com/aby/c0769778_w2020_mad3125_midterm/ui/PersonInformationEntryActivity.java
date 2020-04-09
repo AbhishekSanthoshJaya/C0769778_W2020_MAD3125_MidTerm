@@ -185,7 +185,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
                     edtFirstNameText.getText().toString(),
                     edtLastNameText.getText().toString(),
                     getGender(),
-                    HelperMethods.getInstance().stringToDate(edtDateText.getText().toString()),
+                    edtDateText.getText().toString(),
                     Double.parseDouble(edtGrossIncomeText.getText().toString()),
                     Double.parseDouble(edtRRSPText.getText().toString()));
             Intent mIntent = new Intent(PersonInformationEntryActivity.this, TaxDataDetailsActivity.class);
@@ -202,7 +202,6 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         }
         return count;
     }
-
 
     public boolean sinValidationsRegex()
     {
@@ -277,17 +276,17 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
     }
 
 
-    public CRACustomer.Gender getGender()
+    public String getGender()
     {
         if (rdBtnMale.isChecked()){
-            return CRACustomer.Gender.Male;
+            return "Male";
         }
         else if (rdBtnFemale.isChecked()) {
-            return CRACustomer.Gender.Female;
+            return "Female";
         }
         else if(rdBtnOther.isChecked())
         {
-            return CRACustomer.Gender.Other;
+            return "Other";
         }
         return null;
     }
