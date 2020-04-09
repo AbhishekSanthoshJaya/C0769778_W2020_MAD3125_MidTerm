@@ -27,32 +27,50 @@ public class TaxCalculator {
     }
 
 
-//    public double complexCalcTaxProvince(double grossIncome)
+//    public double complexCalcTaxProvince(double TaxableIncome)
 //    {
-//        double temp1, temp2, temp3, temp4;
-//        if(grossIncome <= 10582)
+//        double temp1,temp2 = 0.0d ,temp3 = 0.0d ,temp4 = 0.0d ,temp5;
+//        if(TaxableIncome < 10582.0d)
 //        {
+//            temp1 = 0.0d;
+//        }
 //
+//        if(TaxableIncome > 10582.0d)
+//        {
+//            temp2 =  (TaxableIncome-10582.0d) * 0.0505;
+//        }
+//
+//        if(TaxableIncome > 87813.0d)
+//        {
+//            temp3 = temp2 + (TaxableIncome-87813.0d) * 0.1116d;
+//        }
+//        if(TaxableIncome > 150000.0d)
+//        {
+//            temp4 = temp3 + (TaxableIncome - 150000.0d) * 0.1216d;
+//        }
+//        if(TaxableIncome > 200000.0d)
+//        {
+//            temp5 = temp4 + (TaxableIncome - 2000000) * 0.01316d;
 //        }
 //    }
 
-    public double calcTaxProvince(double grossIncome)
+    public double calcTaxProvince(double TaxableIncome)
     {
-        if(grossIncome <= 10582.0d) {
+        if(TaxableIncome <= 10582.0d) {
             return 0.0d;
         }
-        else if(grossIncome >= 10582.0d && grossIncome <=43906.0d)
+        else if(TaxableIncome >= 10582.0d && TaxableIncome <=43906.0d)
         {
             return 0.0505d;
         }
-        else if(grossIncome >= 43906.0d && grossIncome <= 87813.0d)
+        else if(TaxableIncome >= 43906.0d && TaxableIncome <= 87813.0d)
         {
             return 0.0915d;
         }
-        else if (grossIncome >= 87813.0d && grossIncome <= 150000.0d) {
+        else if (TaxableIncome >= 87813.0d && TaxableIncome <= 150000.0d) {
             return 0.1116d;
         }
-        else if (grossIncome >= 150000.0d && grossIncome <= 220000.0d)
+        else if (TaxableIncome >= 150000.0d && TaxableIncome <= 220000.0d)
         {
             return 0.1216d;
         }
@@ -62,21 +80,21 @@ public class TaxCalculator {
         }
     }
 
-    public double calcTaxFederal(double grossIncome)
+    public double calcTaxFederal(double TaxableIncome)
     {
-        if(grossIncome <=  12069.0d) {
+        if(TaxableIncome <=  12069.0d) {
             return 0.0d;
         }
-        else if(grossIncome >= 12069.0d && grossIncome <= 47630.0d){
+        else if(TaxableIncome >= 12069.0d && TaxableIncome <= 47630.0d){
             return 0.15d;
         }
-        else if(grossIncome >= 47630.01d && grossIncome <= 95259.0d){
+        else if(TaxableIncome >= 47630.01d && TaxableIncome <= 95259.0d){
             return 0.2050d;
         }
-        else if(grossIncome >= 95259.01d && grossIncome <= 147667.0d){
+        else if(TaxableIncome >= 95259.01d && TaxableIncome <= 147667.0d){
             return 0.26d;
         }
-        else if(grossIncome >= 147667.01d && grossIncome <= 210371.0d){
+        else if(TaxableIncome >= 147667.01d && TaxableIncome <= 210371.0d){
             return 0.29d;
         }
         else {
@@ -96,7 +114,6 @@ public class TaxCalculator {
         }
         return cpp;
     }
-
 
     public double calcEI(double grossIncome)
     {

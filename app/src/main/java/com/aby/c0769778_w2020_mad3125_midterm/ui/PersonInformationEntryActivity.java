@@ -60,9 +60,6 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
     private Button btnClear;
     private Button btnOK;
 
-    String sinNumber;
-    Long sinNumberNums;
-
     @Override
     protected void onStart()
     {

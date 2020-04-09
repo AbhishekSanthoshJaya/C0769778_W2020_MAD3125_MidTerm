@@ -27,8 +27,9 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         CRACustomer craCustomer = intent.getParcelableExtra("CRACustomer");
         String firstName = craCustomer.getFirstName();
+        String formattedFirstName = firstName.substring(0,1).toUpperCase() + firstName.substring(1);
         String lastName = craCustomer.getLastName().toUpperCase();
-        String fullName = lastName + ", " +firstName;
+        String fullName = lastName + ", " +formattedFirstName;
         txtFullName.setText(fullName);
         txtSin.setText(craCustomer.getSIN());
         txtGrossIncome.setText("$ " + HelperMethods.getInstance().doubleFormatter(craCustomer.getGrossIncome()));
@@ -77,7 +78,6 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
 //             txtTotalTaxIncome.setText("$ " +HelperMethods.getInstance().doubleFormatter(totalTaxableIncome));
 //         }
 
-
         if(craCustomer.getRrspContributed() > maxRRSP)
         {
             Double finalCarry = craCustomer.getRrspContributed() - maxRRSP;
@@ -117,6 +117,5 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         txtTotalTaxIncome = findViewById(R.id.txtTotalTaxIncome);
         txtTotalTax = findViewById(R.id.txtTaxPayed);
     }
-
 }
 
