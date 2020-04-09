@@ -109,6 +109,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
                 edtDateText.getText().clear();
                 btnOK.setVisibility(View.INVISIBLE);
                 edtDate.setError(null);
+                edtSIN.setError(null);
             }
         });
     }
@@ -227,16 +228,11 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
     public boolean sinValidations(String s)
     {
         int someFlag = 0;
-        if(s.length() == 9)
+        if(edtSINText.getText().toString().matches("^(\\d{3}-\\d{3}-\\d{3})|(\\d{9})$"))
         {
             someFlag = 1;
             return true;
         }
-//        if(edtSINText .getText().toString().matches("^(\\d{3}-\\d{3}-\\d{3})|(\\d{9})$"))
-//        {
-//            someFlag = 1;
-//            return true;
-//        }
         if(someFlag == 0)
         {
             return false;
