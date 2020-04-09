@@ -2,6 +2,7 @@ package com.aby.c0769778_w2020_mad3125_midterm.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import org.joda.time.Years;
 
 public class TaxDataDetailsActivity extends AppCompatActivity {
     TextView txtRRSP, txtSin, txtFullName, txtBirthDate, txtGender, txtAge, txtGrossIncome, txtFederalTax, txtProvincialTax, txtCPP, txtEI, txtCarry, txtTotalTaxIncome, txtTotalTax;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         String fullName = lastName + ", " +firstName;
         txtFullName.setText(fullName);
         txtSin.setText(craCustomer.getSIN());
-        txtGrossIncome.setText(HelperMethods.getInstance().doubleFormatter(craCustomer.getGrossIncome()));
+        txtGrossIncome.setText("$ " + HelperMethods.getInstance().doubleFormatter(craCustomer.getGrossIncome()));
         txtBirthDate.setText(craCustomer.getBirthDate());
         txtGender.setText(craCustomer.getGender());
         //txtAge.setText(getAge().toString());
@@ -39,38 +41,38 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         String CPP = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcCPP(craCustomer.getGrossIncome()));
         String EI = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcEI(craCustomer.getGrossIncome()));
         double totalTax = Double.parseDouble(provincialTax) + Double.parseDouble(federalTax);
-        txtProvincialTax.setText("province" + provincialTax);
-        txtFederalTax.setText("fed" + federalTax);
-        txtCPP.setText(CPP);
-        txtEI.setText(EI);
+        txtProvincialTax.setText("$ " + provincialTax);
+        txtFederalTax.setText("$ " +federalTax);
+        txtCPP.setText("$ " +CPP);
+        txtEI.setText("$ " +EI);
         txtTotalTax.setText(HelperMethods.getInstance().doubleFormatter(totalTax));
-        txtRRSP.setText(HelperMethods.getInstance().doubleFormatter(craCustomer.getRrspContributed()));
+        txtRRSP.setText("$ " +HelperMethods.getInstance().doubleFormatter(craCustomer.getRrspContributed()));
 
          if(craCustomer.getRrspContributed() == 0)
          {
              String RRSP = HelperMethods.getInstance().doubleFormatter(craCustomer.getGrossIncome() * 0.18d);
              double totalTaxableIncome = craCustomer.getGrossIncome() - (Double.parseDouble(EI) - Double.parseDouble(CPP) + Double.parseDouble(RRSP));
-             txtTotalTaxIncome.setText(HelperMethods.getInstance().doubleFormatter(totalTaxableIncome));
+             txtTotalTaxIncome.setText("$ " +HelperMethods.getInstance().doubleFormatter(totalTaxableIncome));
          }
          else
          {
              String RRSP = HelperMethods.getInstance().doubleFormatter(craCustomer.getRrspContributed());
              double totalTaxableIncome = craCustomer.getGrossIncome() - (Double.parseDouble(EI) - Double.parseDouble(CPP) + Double.parseDouble(RRSP));
-             txtTotalTaxIncome.setText(HelperMethods.getInstance().doubleFormatter(totalTaxableIncome));
+             txtTotalTaxIncome.setText("$ " +HelperMethods.getInstance().doubleFormatter(totalTaxableIncome));
          }
 
         double maxRRSP =  0.18d * craCustomer.getGrossIncome();
         if(craCustomer.getRrspContributed() > maxRRSP)
         {
             Double finalCarry = craCustomer.getRrspContributed() - maxRRSP;
-            txtCarry.setText("-"+HelperMethods.getInstance().doubleFormatter(finalCarry));
+            txtCarry.setText("$ " +"-"+HelperMethods.getInstance().doubleFormatter(finalCarry));
             txtCarry.setTextColor(getResources().getColor(R.color.colorRed));
             txtCarry.setTypeface(null,Typeface.BOLD);
         }
         else
         {
             Double finalCarry =  maxRRSP - craCustomer.getRrspContributed();
-            txtCarry.setText(HelperMethods.getInstance().doubleFormatter(finalCarry));
+            txtCarry.setText("$ " +HelperMethods.getInstance().doubleFormatter(finalCarry));
         }
     }
 

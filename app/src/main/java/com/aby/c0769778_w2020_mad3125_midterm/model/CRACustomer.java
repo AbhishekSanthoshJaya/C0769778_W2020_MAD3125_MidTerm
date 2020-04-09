@@ -22,10 +22,10 @@ public class CRACustomer implements Parcelable
         SIN = in.readString();
         firstName = in.readString();
         lastName = in.readString();
-        grossIncome = in.readDouble();
-        rrspContributed = in.readDouble();
         gender = in.readString();
         birthDate = in.readString();
+        grossIncome = in.readDouble();
+        rrspContributed = in.readDouble();
     }
 
     public static final Creator<CRACustomer> CREATOR = new Creator<CRACustomer>() {
@@ -50,10 +50,10 @@ public class CRACustomer implements Parcelable
         dest.writeString(SIN);
         dest.writeString(firstName);
         dest.writeString(lastName);
+        dest.writeString(gender);
+        dest.writeString(birthDate);
         dest.writeDouble(grossIncome);
         dest.writeDouble(rrspContributed);
-        dest.writeString(birthDate);
-        dest.writeString(gender);
     }
 
     public enum Gender {
