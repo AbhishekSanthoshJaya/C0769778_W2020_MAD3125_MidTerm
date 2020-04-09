@@ -68,7 +68,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
     {
         super.onStart();
         clearFields();
-        wishFieldsBack();
+       // wishFieldsBack();
         edtSINText.setError(null);
     }
 
@@ -82,7 +82,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         valueSetter();
         addingDatePicker();
         filingDateWarning();
-        wishFieldsBack();
+        //wishFieldsBack();
 
         //------- CODE TO PLAY CUSTOM AUDIO ON SCREEN LOAD -------
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.formfilloice);
@@ -93,7 +93,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fieldChecker();
-                killFields();
+                //killFields();
             }
         });
 
@@ -467,6 +467,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
 
     public void killFields()
     {
+
         edtSIN.setEnabled(false);
         edtFirstName.setEnabled(false);
         edtLastName.setEnabled(false);
