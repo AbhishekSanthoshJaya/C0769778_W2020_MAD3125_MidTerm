@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">C0769778_W2020_MAD3125_MidTerm</string>
+    <string name="first_name">FIRST NAME</string>
+    <string name="last_name">LAST NAME</string>
+    <string name="enter_your_sin">ENTER YOUR SIN</string>
+    <string name="information_entry_form">Information Entry Form</string>
+    <string name="birth_date">BIRTH DATE</string>
+    <string name="male">MALE</string>
+    <string name="female">FEMALE</string>
+    <string name="other">OTHER</string>
+    <string name="date_of_filing">DATE OF FILING</string>
+    <string name="gross_income">GROSS INCOME</string>
+    <string name="rrsp_contributed">RRSP CONTRIBUTED</string>
+    <string name="calculate">CALCULATE</string>
+    <string name="clear">CLEAR</string>
+    <string name="not_eligible_to_file_tax_for_current_year">NOT ELIGIBLE TO FILE TAX FOR CURRENT YEAR</string>
+    <string name="your_tax_summary">YOUR TAX SUMMARY</string>
+    <string name="your_sin">YOUR SIN</string>
+    <string name="full_name">FULL NAME</string>
+    <string name="gender">GENDER</string>
+    <string name="age">AGE</string>
+    <string name="tax_fed">TAX (FED)</string>
+    <string name="tax_prov">TAX (PROV)</string>
+    <string name="cpp">CPP</string>
+    <string name="ei">EI</string>
+    <string name="rrsp">RRSP</string>
+    <string name="cf_rrsp">CF RRSP</string>
+    <string name="taxable_income">TAXABLE INCOME</string>
+    <string name="tax_paid">TAX PAID</string>
+    <string name="federal_tax">FEDERAL TAX</string>
+    <string name="provincial_tax">PROVINCIAL TAX</string>
+    <string name="carry_forward_rrsp">CARRY FORWARD RRSP</string>
+    <string name="total_taxable_income">TOTAL TAXABLE INCOME</string>
+    <string name="total_tax_paid">TOTAL TAX PAID</string>
 </resources>
