@@ -68,7 +68,8 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
     {
         super.onStart();
         clearFields();
-
+        wishFieldsBack();
+        edtSINText.setError(null);
     }
 
     @Override
@@ -81,6 +82,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         valueSetter();
         addingDatePicker();
         filingDateWarning();
+        wishFieldsBack();
 
         //------- CODE TO PLAY CUSTOM AUDIO ON SCREEN LOAD -------
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.formfilloice);
@@ -91,6 +93,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fieldChecker();
+                killFields();
             }
         });
 
@@ -111,6 +114,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
                 btnOK.setVisibility(View.INVISIBLE);
                 edtDate.setError(null);
                 edtSIN.setError(null);
+                wishFieldsBack();
             }
         });
         textWatching();
@@ -190,6 +194,40 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
                 edtGrossIncome.setError(null);
             }
         });
+
+        edtDateText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                edtDate.setError(null);
+            }
+        });
+
+        edtRRSPText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                edtRRSP.setError(null);
+            }
+        });
     }
 
     private void initialization()
@@ -246,7 +284,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         }
         if(edtLastNameText.getText().toString().isEmpty())
         {
-            edtLastName.setError("Please enter your date of birth");
+            edtLastName.setError("Please enter your last name");
             someFlag = true;
             return;
         }
@@ -258,13 +296,13 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         }
         if(edtGrossIncomeText.getText().toString().isEmpty())
         {
-            edtGrossIncome.setError("Please enter your date of birth");
+            edtGrossIncome.setError("Please enter your gross income");
             someFlag = true;
             return;
         }
         if(edtRRSPText.getText().toString().isEmpty())
         {
-            edtRRSP.setError("Please enter your date of birth");
+            edtRRSP.setError("Please enter your RRSP");
             someFlag = true;
             return;
         }
@@ -425,5 +463,26 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         rdBtnOther.setChecked(false);
         rdBtnMale.setChecked(false);
         rdBtnFemale.setChecked(false);
+    }
+
+    public void killFields()
+    {
+        edtSIN.setEnabled(false);
+        edtFirstName.setEnabled(false);
+        edtLastName.setEnabled(false);
+        edtDate.setEnabled(false);
+        edtGrossIncome.setEnabled(false);
+        edtRRSP.setEnabled(false);
+    }
+
+    public void wishFieldsBack()
+    {
+        edtSIN.setEnabled(true);
+        edtFirstName.setEnabled(true);
+        edtLastName.setEnabled(true);
+        edtDate.setEnabled(true);
+        edtGrossIncome.setEnabled(true);
+        edtRRSP.setEnabled(true);
+
     }
 }
