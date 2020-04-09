@@ -40,18 +40,32 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         TaxCalculator taxCalculator = new TaxCalculator(craCustomer.getGrossIncome(), craCustomer.getRrspContributed());
         //String provincialTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxProvince(craCustomer.getGrossIncome()));
         //String federalTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxFederal(craCustomer.getGrossIncome()));
-        String CPP = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcCPP(craCustomer.getGrossIncome()));
-        String EI = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcEI(craCustomer.getGrossIncome()));
+//        String CPP = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcCPP(craCustomer.getGrossIncome()));
+//        String EI = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcEI(craCustomer.getGrossIncome()));
 
-        double RRSP = craCustomer.getGrossIncome() * 0.18d;
-        double totalTaxableIncome = craCustomer.getGrossIncome() - (Double.parseDouble(CPP) - Double.parseDouble(EI) + (RRSP));
-        double provincialTax = taxCalculator.calcTaxProvince(craCustomer.getGrossIncome()) * totalTaxableIncome;
-        double federalTax = taxCalculator.calcTaxFederal(craCustomer.getGrossIncome()) * totalTaxableIncome;
+        double totalTaxableIncome = 0.0d;
+        double maxRRSP =  0.18d * craCustomer.getGrossIncome();
+        double EI = taxCalculator.calcEI(craCustomer.getGrossIncome());
+        double CPP = taxCalculator.calcCPP(craCustomer.getGrossIncome());
+        double RRSP = craCustomer.getRrspContributed();
+
+        if(craCustomer.getRrspContributed() > maxRRSP)
+        {
+            totalTaxableIncome = craCustomer.getGrossIncome() - (CPP + EI + maxRRSP);
+        }
+        else
+        {
+            totalTaxableIncome = craCustomer.getGrossIncome() - (CPP + EI + RRSP);
+        }
+
+        double provincialTax = taxCalculator.calcTaxProvince(totalTaxableIncome) * totalTaxableIncome;
+        double federalTax = taxCalculator.calcTaxFederal(totalTaxableIncome) * totalTaxableIncome;
         double totalTax = provincialTax + federalTax;
+
         txtProvincialTax.setText("$ " + HelperMethods.getInstance().doubleFormatter(provincialTax));
         txtFederalTax.setText("$ " + HelperMethods.getInstance().doubleFormatter(federalTax));
-        txtCPP.setText("$ " + CPP);
-        txtEI.setText("$ " + EI);
+        txtCPP.setText("$ " + HelperMethods.getInstance().doubleFormatter(CPP));
+        txtEI.setText("$ " + HelperMethods.getInstance().doubleFormatter(EI));
         txtTotalTax.setText("$ " +HelperMethods.getInstance().doubleFormatter(totalTax));
         txtRRSP.setText("$ " +HelperMethods.getInstance().doubleFormatter(craCustomer.getRrspContributed()));
         txtTotalTaxIncome.setText("$ " +HelperMethods.getInstance().doubleFormatter(totalTaxableIncome));
@@ -63,7 +77,7 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
 //             txtTotalTaxIncome.setText("$ " +HelperMethods.getInstance().doubleFormatter(totalTaxableIncome));
 //         }
 
-        double maxRRSP =  0.18d * craCustomer.getGrossIncome();
+
         if(craCustomer.getRrspContributed() > maxRRSP)
         {
             Double finalCarry = craCustomer.getRrspContributed() - maxRRSP;

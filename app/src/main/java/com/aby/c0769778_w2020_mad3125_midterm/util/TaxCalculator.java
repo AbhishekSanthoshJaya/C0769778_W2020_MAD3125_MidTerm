@@ -38,18 +38,18 @@ public class TaxCalculator {
 
     public double calcTaxProvince(double grossIncome)
     {
-        if(grossIncome <= 10582) {
+        if(grossIncome <= 10582.0d) {
             return 0.0d;
         }
         else if(grossIncome >= 10582.0d && grossIncome <=43906.0d)
         {
-            return 0.505d;
+            return 0.0505d;
         }
         else if(grossIncome >= 43906.0d && grossIncome <= 87813.0d)
         {
-            return 0.915d;
+            return 0.0915d;
         }
-        else if (grossIncome >= 87813.0 && grossIncome <= 150000.0d) {
+        else if (grossIncome >= 87813.0d && grossIncome <= 150000.0d) {
             return 0.1116d;
         }
         else if (grossIncome >= 150000.0d && grossIncome <= 220000.0d)
@@ -65,22 +65,22 @@ public class TaxCalculator {
     public double calcTaxFederal(double grossIncome)
     {
         if(grossIncome <=  12069.0d) {
-            return 0.0;
+            return 0.0d;
         }
         else if(grossIncome >= 12069.0d && grossIncome <= 47630.0d){
-            return 0.15;
+            return 0.15d;
         }
-        else if(grossIncome >= 47630.0d && grossIncome <= 95259.0d){
-            return 0.2050;
+        else if(grossIncome >= 47630.01d && grossIncome <= 95259.0d){
+            return 0.2050d;
         }
-        else if(grossIncome >= 95259.0d && grossIncome <= 147667.0d){
-            return 0.26;
+        else if(grossIncome >= 95259.01d && grossIncome <= 147667.0d){
+            return 0.26d;
         }
-        else if(grossIncome >= 147667.0d && grossIncome <= 210371.0d){
-            return 0.29;
+        else if(grossIncome >= 147667.01d && grossIncome <= 210371.0d){
+            return 0.29d;
         }
         else {
-            return 0.33;
+            return 0.33d;
         }
     }
 
