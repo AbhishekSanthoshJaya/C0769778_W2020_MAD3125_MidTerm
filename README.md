@@ -33,7 +33,7 @@ Screenshot | Description
 <img src="https://i.servimg.com/u/f93/18/45/29/87/screen12.png" alt="alert"/> | Alert box shows up on clicking the tax filing date field.
 <img src="https://i93.servimg.com/u/f93/18/45/29/87/age_an10.png" alt="errors"/> | Validations for SIN number using regex and age. Buttons disappear if the applicant is not over 18 and displays a warning. TextWatcher removes set errors after text change.
 <img src="https://i93.servimg.com/u/f93/18/45/29/87/data_e10.png" alt="errors"/> | Valid data entered into the form. Name entry could be in any case and will be displayed in the appropriate format.
-<img src="https://i93.servimg.com/u/f93/18/45/29/87/detail17.png" alt="details1"/> | Activity displaying all the entered as well as calculated information.
+<img src="https://i93.servimg.com/u/f93/18/45/29/87/detail17.png" alt="details1"/> | Activity displaying all the entered as well as calculated information. Implemented Parcelable for data transfer.
 <img src="https://i93.servimg.com/u/f93/18/45/29/87/detail11.jpg" alt="details2"/> | Second page of details.
 
 
