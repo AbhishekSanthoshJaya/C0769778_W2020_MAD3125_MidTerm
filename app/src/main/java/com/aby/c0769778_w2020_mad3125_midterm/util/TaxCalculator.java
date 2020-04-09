@@ -26,6 +26,8 @@ public class TaxCalculator {
         this.rrspAmount = rrspAmount;
     }
 
+
+
     public double calcTaxProvince(double grossIncome)
     {
         if(grossIncome <= 10582) {

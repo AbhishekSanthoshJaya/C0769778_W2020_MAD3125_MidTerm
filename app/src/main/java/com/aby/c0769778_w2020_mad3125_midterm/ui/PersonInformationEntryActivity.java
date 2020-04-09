@@ -282,10 +282,16 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day)
             {
-                String date;
+                String date ="";
                 month = month + 1;
                 String monthName = getMonthName(month);
-                date = day + "-" + monthName + "-" + year;
+                if(day<10) {
+                    date = "0"+day + "-" + monthName + "-" + year;
+                }
+                else
+                {
+                    date = day + "-" + monthName + "-" + year;
+                }
                 edtDateText.setText(date);
             }
         };
