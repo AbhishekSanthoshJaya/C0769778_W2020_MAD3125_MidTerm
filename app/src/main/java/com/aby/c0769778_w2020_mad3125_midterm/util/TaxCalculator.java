@@ -2,8 +2,8 @@ package com.aby.c0769778_w2020_mad3125_midterm.util;
 
 public class TaxCalculator {
 
-    double grossIncome;
-    double rrspAmount;
+    private double grossIncome;
+    private double rrspAmount;
 
     public TaxCalculator(double grossIncome, double rrspAmount) {
         this.grossIncome = grossIncome;
@@ -27,32 +27,50 @@ public class TaxCalculator {
     }
 
 
-//    public double complexCalcTaxProvince(double TaxableIncome)
-//    {
-//        double temp1,temp2 = 0.0d ,temp3 = 0.0d ,temp4 = 0.0d ,temp5;
-//        if(TaxableIncome < 10582.0d)
-//        {
-//            temp1 = 0.0d;
-//        }
-//
-//        if(TaxableIncome > 10582.0d)
-//        {
-//            temp2 =  (TaxableIncome-10582.0d) * 0.0505;
-//        }
-//
-//        if(TaxableIncome > 87813.0d)
-//        {
-//            temp3 = temp2 + (TaxableIncome-87813.0d) * 0.1116d;
-//        }
-//        if(TaxableIncome > 150000.0d)
-//        {
-//            temp4 = temp3 + (TaxableIncome - 150000.0d) * 0.1216d;
-//        }
-//        if(TaxableIncome > 200000.0d)
-//        {
-//            temp5 = temp4 + (TaxableIncome - 2000000) * 0.01316d;
-//        }
-//    }
+    public double complexCalcTaxProvince(double TaxableIncome)
+    {
+        double taxRate = 0.0;
+        double temp1 = 0.0;
+        if (TaxableIncome > 10582.0d) {
+             temp1 = TaxableIncome - 10582.0d;
+            if (temp1 > 43906.0) {
+                temp1 = temp1 - (43906.0 - 10582.0);
+                taxRate = taxRate + ((43906.0 - 10582.0) * 0.0505);
+                if (temp1 > 87813.0) {
+                    taxRate = taxRate + ((87813 - 43906) * 0.0915);
+                    temp1 = temp1 - (87813 - 43906);
+                    if (temp1 > 150000.0d) {
+                        taxRate = taxRate + ((150000 - 87813) * 0.1116);
+                        temp1 = temp1 - (150000 - 87813);
+                        if (temp1 > 220000.0d) {
+                            taxRate = taxRate + ((220000 - 150000) * 0.1216);
+                            temp1 = temp1 - (220000 - 150000);
+                            if (temp1 > 220000.01d) {
+                                taxRate = taxRate + (temp1 * 0.1316);
+                            }
+                        } else
+                            {
+                            taxRate = taxRate + (temp1 * 0.1316);
+                        }
+                    } else
+                        {
+                        taxRate = taxRate + (temp1 * 0.1216);
+                    }
+                } else
+                    {
+                    taxRate = taxRate + (temp1 * 0.116);
+                }
+            } else
+                {
+                taxRate = taxRate + (temp1 * 0.0915);
+            }
+        }
+        else
+        {
+            taxRate = taxRate + (temp1 * 0.0505);
+        }
+        return temp1;
+    }
 
     public double calcTaxProvince(double TaxableIncome)
     {
@@ -80,6 +98,16 @@ public class TaxCalculator {
         }
     }
 
+//    public double complexCalcTaxFederal(double TaxableIncome)
+////    {
+////        double taxRate = 0.0d, temp1;
+////        if(TaxableIncome > 12069.0d)
+////        {
+////            temp1 = TaxableIncome - 12069.0d;
+////            taxRate = 0.0d;
+////            if()
+////        }
+////    }
     public double calcTaxFederal(double TaxableIncome)
     {
         if(TaxableIncome <=  12069.0d) {
