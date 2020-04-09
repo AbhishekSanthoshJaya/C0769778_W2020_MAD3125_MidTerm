@@ -26,7 +26,6 @@ public class TaxCalculator {
         this.rrspAmount = rrspAmount;
     }
 
-
     public double complexCalcTaxProvince(double TaxableIncome)
     {
         double taxRate = 0.0;
@@ -37,14 +36,14 @@ public class TaxCalculator {
                 temp1 = temp1 - (43906.0 - 10582.0);
                 taxRate = taxRate + ((43906.0 - 10582.0) * 0.0505);
                 if (temp1 > 87813.0) {
-                    taxRate = taxRate + ((87813 - 43906) * 0.0915);
                     temp1 = temp1 - (87813 - 43906);
+                    taxRate = taxRate + ((87813 - 43906) * 0.0915);
                     if (temp1 > 150000.0d) {
-                        taxRate = taxRate + ((150000 - 87813) * 0.1116);
                         temp1 = temp1 - (150000 - 87813);
+                        taxRate = taxRate + ((150000 - 87813) * 0.1116);
                         if (temp1 > 220000.0d) {
-                            taxRate = taxRate + ((220000 - 150000) * 0.1216);
                             temp1 = temp1 - (220000 - 150000);
+                            taxRate = taxRate + ((220000 - 150000) * 0.1216);
                             if (temp1 > 220000.01d) {
                                 taxRate = taxRate + (temp1 * 0.1316);
                             }
@@ -69,7 +68,7 @@ public class TaxCalculator {
         {
             taxRate = taxRate + (temp1 * 0.0505);
         }
-        return temp1;
+        return taxRate;
     }
 
     public double calcTaxProvince(double TaxableIncome)
@@ -98,16 +97,51 @@ public class TaxCalculator {
         }
     }
 
-//    public double complexCalcTaxFederal(double TaxableIncome)
-////    {
-////        double taxRate = 0.0d, temp1;
-////        if(TaxableIncome > 12069.0d)
-////        {
-////            temp1 = TaxableIncome - 12069.0d;
-////            taxRate = 0.0d;
-////            if()
-////        }
-////    }
+        public double complexCalcTaxFederal(double TaxableIncome)
+        {
+            double taxedAmount = 0.0;
+            double temp1 = 0.0;
+            if (TaxableIncome > 12069) {
+                temp1 = TaxableIncome - 12069;
+                if (temp1 > 47630) {
+                    temp1 = temp1 - (47630 - 12069);
+                    taxedAmount = taxedAmount + ((47630 - 12069) * 0.15);
+                    if (temp1 > 95259) {
+                        taxedAmount = taxedAmount + ((95259 - 47630) * 0.205);
+                        temp1 = temp1 - (95259 - 47630);
+                        if (temp1 > 147667) {
+                            taxedAmount = taxedAmount + ((147667 - 95259) * 0.26);
+                            temp1 = temp1 - (147667 - 95259);
+                            if (temp1 > 210371) {
+                                taxedAmount = taxedAmount + ((210371 - 147667) * 0.29);
+                                temp1 = temp1 - (210371 - 147667);
+                                if (temp1 > 210371) {
+                                    taxedAmount = taxedAmount + (temp1 * 0.33);
+                                }
+                            } else
+                            {
+                                taxedAmount = taxedAmount + (temp1 * 0.33);
+                            }
+                        } else
+                        {
+                            taxedAmount = taxedAmount + (temp1 * 0.29);
+                        }
+                    } else
+                    {
+                        taxedAmount = taxedAmount + (temp1 * 0.26);
+                    }
+                } else
+                {
+                    taxedAmount = taxedAmount + (temp1 * 0.205);
+                }
+            }
+            else
+            {
+                taxedAmount = taxedAmount + (temp1 * 0.15);
+            }
+            return taxedAmount;
+        }
+
     public double calcTaxFederal(double TaxableIncome)
     {
         if(TaxableIncome <=  12069.0d) {

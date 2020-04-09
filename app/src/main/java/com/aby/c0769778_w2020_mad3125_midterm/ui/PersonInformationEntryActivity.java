@@ -64,8 +64,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
     protected void onStart()
     {
         super.onStart();
-        clearFields();
-       // wishFieldsBack();
+        clearOnBack();
         edtSINText.setError(null);
     }
 
@@ -79,7 +78,6 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         valueSetter();
         addingDatePicker();
         filingDateWarning();
-        //wishFieldsBack();
 
         //------- CODE TO PLAY CUSTOM AUDIO ON SCREEN LOAD -------
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.formfilloice);
@@ -90,7 +88,6 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fieldChecker();
-                //killFields();
             }
         });
 
@@ -462,6 +459,11 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         rdBtnFemale.setChecked(false);
     }
 
+    public void clearOnBack()
+    {
+        edtGrossIncomeText.getText().clear();
+        edtRRSPText.getText().clear();
+    }
     public void killFields()
     {
 

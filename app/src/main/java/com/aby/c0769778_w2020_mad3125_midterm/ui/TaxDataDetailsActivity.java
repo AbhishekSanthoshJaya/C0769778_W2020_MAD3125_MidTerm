@@ -54,9 +54,12 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
             totalTaxableIncome = craCustomer.getGrossIncome() - (CPP + EI + RRSP);
         }
 
-        //double provincialTax = taxCalculator.calcTaxProvince(totalTaxableIncome) * totalTaxableIncome;
-        double provincialTax = taxCalculator.complexCalcTaxProvince(totalTaxableIncome);
+        double provincialTax = taxCalculator.calcTaxProvince(totalTaxableIncome) * totalTaxableIncome;
         double federalTax = taxCalculator.calcTaxFederal(totalTaxableIncome) * totalTaxableIncome;
+
+//        double provincialTax = taxCalculator.complexCalcTaxProvince(totalTaxableIncome);
+//        double federalTax = taxCalculator.complexCalcTaxFederal(totalTaxableIncome);
+
         double totalTax = provincialTax + federalTax;
 
         txtProvincialTax.setText("$ " + HelperMethods.getInstance().doubleFormatter(provincialTax));
