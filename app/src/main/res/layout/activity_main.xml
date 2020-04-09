@@ -368,6 +368,7 @@
                 android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
         <Button
             android:id="@+id/btnSubmit"
             android:layout_width="wrap_content"
@@ -404,6 +405,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btnSubmit"
             app:layout_constraintTop_toBottomOf="@+id/edtRRSP" />
+
+        <TextView
+            android:id="@+id/txtAgeWarning"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="681dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="100dp"
+            android:background="#000000"
+            android:fontFamily="@font/acme"
+            android:text="NOT ELIGIBLE TO FILE TAX FOR CURRENT YEAR"
+            android:textAlignment="center"
+            android:textColor="#FF0000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

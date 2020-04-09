@@ -46,8 +46,9 @@ public class TaxCalculator {
         {
             return grossIncome*0.1216;
         }
-        else {
-            return grossIncome*0.1316;
+        else
+        {
+        return grossIncome*0.1316;
         }
     }
 

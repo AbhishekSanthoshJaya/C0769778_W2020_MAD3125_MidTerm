@@ -78,12 +78,9 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
 
     public int getAge()
     {
-//        LocalDate birthdate = HelperMethods.getInstance().stringToDate(txtBirthDate.getText().toString());
-//        LocalDate now = new LocalDate();
-                int age = 0;
-           String bDate = txtBirthDate.getText().toString();
-           age = LocalDate.now().getYear() - HelperMethods.getInstance().stringToDate(bDate).getYear();
-//        return Years.yearsBetween(birthdate, now);
+        int age = 0;
+        String bDate = txtBirthDate.getText().toString();
+        age = LocalDate.now().getYear() - HelperMethods.getInstance().stringToDate(bDate).getYear();
         return age;
     }
 

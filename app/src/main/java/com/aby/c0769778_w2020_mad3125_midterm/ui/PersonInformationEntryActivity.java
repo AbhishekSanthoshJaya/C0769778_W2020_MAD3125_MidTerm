@@ -9,9 +9,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -28,17 +25,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.joda.time.LocalDate;
-import org.joda.time.PeriodType;
-import org.joda.time.Years;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Month;
-import java.time.Period;
 import java.util.Calendar;
-import java.util.Date;
 
 public class PersonInformationEntryActivity extends AppCompatActivity {
 
@@ -62,6 +52,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
     private RadioButton rdBtnMale;
     private RadioButton rdBtnFemale;
     private RadioButton rdBtnOther;
+    private TextView txtAgeWarning;
 
     private Button btnSubmit;
     private Button btnClear;
@@ -74,6 +65,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
     {
         super.onStart();
         clearFields();
+
     }
 
     @Override
@@ -87,6 +79,8 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         addingDatePicker();
         filingDateWarning();
         //sinValidations();
+
+        txtAgeWarning.setVisibility(View.INVISIBLE);
         //------- CODE TO PLAY CUSTOM AUDIO ON SCREEN LOAD -------
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.formfilloice);
         mp.start();
@@ -95,7 +89,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                emptyFieldChecker();
+                fieldChecker();
             }
         });
 
@@ -129,6 +123,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         rdBtnFemale = findViewById(R.id.rdBtnFemale);
         rdBtnMale = findViewById(R.id.rdBtnMale);
         rdBtnOther = findViewById(R.id.rdBtnOther);
+        txtAgeWarning = findViewById(R.id.txtAgeWarning);
     }
 
     private void valueSetter()
@@ -140,7 +135,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         edtFilingDateText.setText(date.toString(fmt));
     }
 
-    public void emptyFieldChecker()
+    public void fieldChecker()
     {
         boolean someFlag = false;
         if(edtSINText.getText().toString().isEmpty())
@@ -181,30 +176,30 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
 
         if(!someFlag)
         {
-            CRACustomer craCustomer = new CRACustomer(edtSINText.getText().toString(),
-                    edtFirstNameText.getText().toString(),
-                    edtLastNameText.getText().toString(),
-                    getGender(),
-                    edtDateText.getText().toString(),
-                    Double.parseDouble(edtGrossIncomeText.getText().toString()),
-                    Double.parseDouble(edtRRSPText.getText().toString()));
-            Intent mIntent = new Intent(PersonInformationEntryActivity.this, TaxDataDetailsActivity.class);
-            mIntent.putExtra("CRACustomer", craCustomer);
-            startActivity(mIntent);
+            if(calcAge(edtDateText.getText().toString()) > 18) {
+                CRACustomer craCustomer = new CRACustomer(edtSINText.getText().toString(),
+                        edtFirstNameText.getText().toString(),
+                        edtLastNameText.getText().toString(),
+                        getGender(),
+                        edtDateText.getText().toString(),
+                        Double.parseDouble(edtGrossIncomeText.getText().toString()),
+                        Double.parseDouble(edtRRSPText.getText().toString()));
+                Intent mIntent = new Intent(PersonInformationEntryActivity.this, TaxDataDetailsActivity.class);
+                mIntent.putExtra("CRACustomer", craCustomer);
+                startActivity(mIntent);
+            }
+            else {
+
+                txtAgeWarning.setVisibility(View.VISIBLE);
+                btnClear.setVisibility(View.INVISIBLE);
+                btnSubmit.setVisibility(View.INVISIBLE);
+            }
         }
-    }
-    private Integer getCount(long n)
-    {
-        int count = 0;
-        while (n != 0) {
-            n = n / 10;
-            ++count;
-        }
-        return count;
     }
 
     public boolean sinValidationsRegex()
     {
+
         return edtSINText.getText().toString().matches("^(\\d{3}-\\d{3}-\\d{3})|(\\d{9})$");
     }
 
@@ -266,10 +261,11 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
 
     private int calcAge(String s) {
         int age = 0;
-        if(edtDateText.getText() != null)
+        if(!edtDateText.getText().toString().isEmpty())
         {
             s = edtDateText.getText().toString();
             age = LocalDate.now().getYear() - HelperMethods.getInstance().stringToDate(s).getYear();
+            return age;
         }
         Toast.makeText(PersonInformationEntryActivity.this, age, Toast.LENGTH_SHORT).show();
         return age;
