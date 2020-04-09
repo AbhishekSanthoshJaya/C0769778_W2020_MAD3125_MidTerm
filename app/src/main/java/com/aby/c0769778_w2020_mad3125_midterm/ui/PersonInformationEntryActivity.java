@@ -108,6 +108,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
                 txtAgeWarning.setVisibility(View.INVISIBLE);
                 edtDateText.getText().clear();
                 btnOK.setVisibility(View.INVISIBLE);
+                edtDate.setError(null);
             }
         });
     }
@@ -191,7 +192,24 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
 
         if(!someFlag)
         {
-            if(calcAge(edtDateText.getText().toString()) > 18) {
+            int anotherFlag = 0;
+            if(calcAge(edtDateText.getText().toString()) < 18) {
+                anotherFlag = 1;
+                txtAgeWarning.setVisibility(View.VISIBLE);
+                btnClear.setVisibility(View.INVISIBLE);
+                btnSubmit.setVisibility(View.INVISIBLE);
+                btnOK.setVisibility(View.VISIBLE);
+                edtDate.setError("Enter a valid date of birth");
+            }
+
+            if(!sinValidations(edtSINText.getText().toString()))
+            {
+                anotherFlag = 1;
+                edtSIN.setError("Enter a valid SIN number");
+            }
+
+            if(anotherFlag == 0)
+            {
                 CRACustomer craCustomer = new CRACustomer(edtSINText.getText().toString(),
                         edtFirstNameText.getText().toString(),
                         edtLastNameText.getText().toString(),
@@ -203,21 +221,27 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
                 mIntent.putExtra("CRACustomer", craCustomer);
                 startActivity(mIntent);
             }
-            else {
-
-                txtAgeWarning.setVisibility(View.VISIBLE);
-                btnClear.setVisibility(View.INVISIBLE);
-                btnSubmit.setVisibility(View.INVISIBLE);
-                btnOK.setVisibility(View.VISIBLE);
-                edtDate.setError("Enter a valid date of birth");
-            }
         }
     }
 
-    public boolean sinValidationsRegex()
+    public boolean sinValidations(String s)
     {
-
-        return edtSINText.getText().toString().matches("^(\\d{3}-\\d{3}-\\d{3})|(\\d{9})$");
+        int someFlag = 0;
+        if(s.length() == 9)
+        {
+            someFlag = 1;
+            return true;
+        }
+//        if(edtSINText .getText().toString().matches("^(\\d{3}-\\d{3}-\\d{3})|(\\d{9})$"))
+//        {
+//            someFlag = 1;
+//            return true;
+//        }
+        if(someFlag == 0)
+        {
+            return false;
+        }
+        return true;
     }
 
     private void filingDateWarning()
@@ -311,6 +335,8 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         edtDateText.getText().clear();
         edtGrossIncomeText.getText().clear();
         edtRRSPText.getText().clear();
+        edtSIN.setError(null);
+        edtDate.setError(null);
 
         rdBtnOther.setChecked(false);
         rdBtnMale.setChecked(false);
