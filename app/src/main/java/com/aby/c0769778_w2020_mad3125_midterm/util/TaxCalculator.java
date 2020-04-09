@@ -30,61 +30,57 @@ public class TaxCalculator {
 //    public double complexCalcTaxProvince(double grossIncome)
 //    {
 //        double temp1, temp2, temp3, temp4;
-//        if(grossIncome > 10582)
+//        if(grossIncome <= 10582)
 //        {
-//            temp1 = grossIncome - 10582;
-//            if(temp1 > 43906)
-//            {
 //
-//            }
 //        }
 //    }
 
     public double calcTaxProvince(double grossIncome)
     {
         if(grossIncome <= 10582) {
-            return grossIncome*0.0;
+            return 0.0d;
         }
-        else if(grossIncome >= 10582 && grossIncome <=43906)
+        else if(grossIncome >= 10582.0d && grossIncome <=43906.0d)
         {
-            return grossIncome*0.505;
+            return 0.505d;
         }
-        else if(grossIncome >= 43906 && grossIncome <= 87813)
+        else if(grossIncome >= 43906.0d && grossIncome <= 87813.0d)
         {
-            return grossIncome*0.915;
+            return 0.915d;
         }
-        else if (grossIncome >= 87813.0 && grossIncome <= 150000) {
-            return grossIncome*0.1116;
+        else if (grossIncome >= 87813.0 && grossIncome <= 150000.0d) {
+            return 0.1116d;
         }
-        else if (grossIncome >= 150000.0 && grossIncome <= 220000)
+        else if (grossIncome >= 150000.0d && grossIncome <= 220000.0d)
         {
-            return grossIncome*0.1216;
+            return 0.1216d;
         }
         else
         {
-        return grossIncome*0.1316;
+        return 0.1316d;
         }
     }
 
     public double calcTaxFederal(double grossIncome)
     {
-        if(grossIncome <=  12069.0) {
-            return grossIncome*0.0;
+        if(grossIncome <=  12069.0d) {
+            return 0.0;
         }
-        else if(grossIncome >= 12069 && grossIncome <= 47630){
-            return grossIncome*0.15;
+        else if(grossIncome >= 12069.0d && grossIncome <= 47630.0d){
+            return 0.15;
         }
-        else if(grossIncome >= 47630 && grossIncome <= 95259){
-            return grossIncome*0.2050;
+        else if(grossIncome >= 47630.0d && grossIncome <= 95259.0d){
+            return 0.2050;
         }
-        else if(grossIncome >= 95259 && grossIncome <= 147667){
-            return grossIncome*0.26;
+        else if(grossIncome >= 95259.0d && grossIncome <= 147667.0d){
+            return 0.26;
         }
-        else if(grossIncome >= 147667 && grossIncome <= 210371){
-            return grossIncome*0.29;
+        else if(grossIncome >= 147667.0d && grossIncome <= 210371.0d){
+            return 0.29;
         }
         else {
-            return grossIncome*0.33;
+            return 0.33;
         }
     }
 

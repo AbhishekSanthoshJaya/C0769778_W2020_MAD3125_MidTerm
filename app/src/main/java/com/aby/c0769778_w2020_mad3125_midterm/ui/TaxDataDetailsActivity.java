@@ -17,7 +17,6 @@ import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
 public class TaxDataDetailsActivity extends AppCompatActivity {
-
     TextView txtRRSP, txtSin, txtFullName, txtBirthDate, txtGender, txtAge, txtGrossIncome, txtFederalTax, txtProvincialTax, txtCPP, txtEI, txtCarry, txtTotalTaxIncome, txtTotalTax;
     @SuppressLint("SetTextI18n")
     @Override
@@ -36,31 +35,33 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         txtBirthDate.setText(craCustomer.getBirthDate());
         txtGender.setText(craCustomer.getGender());
         txtAge.setText(String.valueOf(getAge()));
+
+
         TaxCalculator taxCalculator = new TaxCalculator(craCustomer.getGrossIncome(), craCustomer.getRrspContributed());
-        String provincialTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxProvince(craCustomer.getGrossIncome()));
-        String federalTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxFederal(craCustomer.getGrossIncome()));
+        //String provincialTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxProvince(craCustomer.getGrossIncome()));
+        //String federalTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxFederal(craCustomer.getGrossIncome()));
         String CPP = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcCPP(craCustomer.getGrossIncome()));
         String EI = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcEI(craCustomer.getGrossIncome()));
-        double totalTax = Double.parseDouble(provincialTax) + Double.parseDouble(federalTax);
-        txtProvincialTax.setText("$ " + provincialTax);
-        txtFederalTax.setText("$ " +federalTax);
-        txtCPP.setText("$ " +CPP);
-        txtEI.setText("$ " +EI);
+
+        double RRSP = craCustomer.getGrossIncome() * 0.18d;
+        double totalTaxableIncome = craCustomer.getGrossIncome() - (Double.parseDouble(CPP) - Double.parseDouble(EI) + (RRSP));
+        double provincialTax = taxCalculator.calcTaxProvince(craCustomer.getGrossIncome()) * totalTaxableIncome;
+        double federalTax = taxCalculator.calcTaxFederal(craCustomer.getGrossIncome()) * totalTaxableIncome;
+        double totalTax = provincialTax + federalTax;
+        txtProvincialTax.setText("$ " + HelperMethods.getInstance().doubleFormatter(provincialTax));
+        txtFederalTax.setText("$ " + HelperMethods.getInstance().doubleFormatter(federalTax));
+        txtCPP.setText("$ " + CPP);
+        txtEI.setText("$ " + EI);
         txtTotalTax.setText("$ " +HelperMethods.getInstance().doubleFormatter(totalTax));
         txtRRSP.setText("$ " +HelperMethods.getInstance().doubleFormatter(craCustomer.getRrspContributed()));
+        txtTotalTaxIncome.setText("$ " +HelperMethods.getInstance().doubleFormatter(totalTaxableIncome));
 
-         if(craCustomer.getRrspContributed() == 0)
-         {
-             String RRSP = HelperMethods.getInstance().doubleFormatter(craCustomer.getGrossIncome() * 0.18d);
-             double totalTaxableIncome = craCustomer.getGrossIncome() - (Double.parseDouble(EI) - Double.parseDouble(CPP) + Double.parseDouble(RRSP));
-             txtTotalTaxIncome.setText("$ " +HelperMethods.getInstance().doubleFormatter(totalTaxableIncome));
-         }
-         else
-         {
-             String RRSP = HelperMethods.getInstance().doubleFormatter(craCustomer.getRrspContributed());
-             double totalTaxableIncome = craCustomer.getGrossIncome() - (Double.parseDouble(EI) - Double.parseDouble(CPP) + Double.parseDouble(RRSP));
-             txtTotalTaxIncome.setText("$ " +HelperMethods.getInstance().doubleFormatter(totalTaxableIncome));
-         }
+//         else
+//         {
+//             String RRSP = HelperMethods.getInstance().doubleFormatter(craCustomer.getRrspContributed());
+//             double totalTaxableIncome = craCustomer.getGrossIncome() - (Double.parseDouble(EI) - Double.parseDouble(CPP) + Double.parseDouble(RRSP));
+//             txtTotalTaxIncome.setText("$ " +HelperMethods.getInstance().doubleFormatter(totalTaxableIncome));
+//         }
 
         double maxRRSP =  0.18d * craCustomer.getGrossIncome();
         if(craCustomer.getRrspContributed() > maxRRSP)
@@ -102,5 +103,6 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         txtTotalTaxIncome = findViewById(R.id.txtTotalTaxIncome);
         txtTotalTax = findViewById(R.id.txtTaxPayed);
     }
+
 }
 
