@@ -34,7 +34,7 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         txtGrossIncome.setText("$ " + HelperMethods.getInstance().doubleFormatter(craCustomer.getGrossIncome()));
         txtBirthDate.setText(craCustomer.getBirthDate());
         txtGender.setText(craCustomer.getGender());
-        //txtAge.setText(getAge().toString());
+        txtAge.setText(String.valueOf(getAge()));
         TaxCalculator taxCalculator = new TaxCalculator(craCustomer.getGrossIncome(), craCustomer.getRrspContributed());
         String provincialTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxProvince(craCustomer.getGrossIncome()));
         String federalTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxFederal(craCustomer.getGrossIncome()));
@@ -45,7 +45,7 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         txtFederalTax.setText("$ " +federalTax);
         txtCPP.setText("$ " +CPP);
         txtEI.setText("$ " +EI);
-        txtTotalTax.setText(HelperMethods.getInstance().doubleFormatter(totalTax));
+        txtTotalTax.setText("$ " +HelperMethods.getInstance().doubleFormatter(totalTax));
         txtRRSP.setText("$ " +HelperMethods.getInstance().doubleFormatter(craCustomer.getRrspContributed()));
 
          if(craCustomer.getRrspContributed() == 0)
@@ -76,16 +76,16 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         }
     }
 
-//    public Years getAge()
-//    {
+    public int getAge()
+    {
 //        LocalDate birthdate = HelperMethods.getInstance().stringToDate(txtBirthDate.getText().toString());
 //        LocalDate now = new LocalDate();
-//        Years age = Years.yearsBetween(birthdate, now);
-////        int age = 0;
-////        String bDate = txtBirthDate.getText().toString();
-////        age = LocalDate.now().getYear() - HelperMethods.getInstance().stringToDate(bDate).getYear();
-//        return age;
-//    }
+                int age = 0;
+           String bDate = txtBirthDate.getText().toString();
+           age = LocalDate.now().getYear() - HelperMethods.getInstance().stringToDate(bDate).getYear();
+//        return Years.yearsBetween(birthdate, now);
+        return age;
+    }
 
     public void initialization2()
     {
