@@ -7,20 +7,23 @@ import org.joda.time.LocalDate;
 
 public class CRACustomer implements Parcelable
 {
-    public CRACustomer(Parcel in) {
+
+    public CRACustomer(String SIN, String firstName, String lastName, Gender gender, LocalDate birthDate, Float grossIncome, Float rrspContributed) {
+        this.SIN = SIN;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.birthDate = birthDate;
+        this.grossIncome = grossIncome;
+        this.rrspContributed = rrspContributed;
+    }
+
+    protected CRACustomer(Parcel in) {
         SIN = in.readString();
         firstName = in.readString();
         lastName = in.readString();
-        if (in.readByte() == 0) {
-            grossIncome = null;
-        } else {
-            grossIncome = in.readFloat();
-        }
-        if (in.readByte() == 0) {
-            rrspContributed = null;
-        } else {
-            rrspContributed = in.readFloat();
-        }
+        grossIncome = in.readDouble();
+        rrspContributed = in.readDouble();
     }
 
     public static final Creator<CRACustomer> CREATOR = new Creator<CRACustomer>() {
@@ -40,33 +43,13 @@ public class CRACustomer implements Parcelable
         return 0;
     }
 
-    public CRACustomer(String SIN, String firstName, String lastName, Gender gender, LocalDate birthDate, Float grossIncome, Float rrspContributed) {
-        this.SIN = SIN;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.birthDate = birthDate;
-        this.grossIncome = grossIncome;
-        this.rrspContributed = rrspContributed;
-    }
-
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(SIN);
         dest.writeString(firstName);
         dest.writeString(lastName);
-        if (grossIncome == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeFloat(grossIncome);
-        }
-        if (rrspContributed == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeFloat(rrspContributed);
-        }
+        dest.writeDouble(grossIncome);
+        dest.writeDouble(rrspContributed);
     }
 
     public enum Gender {
@@ -77,8 +60,8 @@ public class CRACustomer implements Parcelable
     private String lastName;
     private Gender gender;
     private LocalDate birthDate;
-    private Float grossIncome;
-    private Float rrspContributed;
+    private double grossIncome;
+    private double rrspContributed;
 
     public String getFullName()
     {
@@ -129,7 +112,7 @@ public class CRACustomer implements Parcelable
         return grossIncome;
     }
 
-    public void setGrossIncome(Float grossIncome) {
+    public void setGrossIncome(double grossIncome) {
         this.grossIncome = grossIncome;
     }
 
@@ -137,7 +120,7 @@ public class CRACustomer implements Parcelable
         return rrspContributed;
     }
 
-    public void setRrspContributed(Float rrspContributed) {
+    public void setRrspContributed(double rrspContributed) {
         this.rrspContributed = rrspContributed;
     }
 }

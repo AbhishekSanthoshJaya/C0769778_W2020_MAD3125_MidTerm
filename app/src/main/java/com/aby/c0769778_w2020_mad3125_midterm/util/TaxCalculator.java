@@ -2,10 +2,10 @@ package com.aby.c0769778_w2020_mad3125_midterm.util;
 
 public class TaxCalculator {
 
-    Double grossIncome;
-    Double rrspAmount;
+    double grossIncome;
+    double rrspAmount;
 
-    public TaxCalculator(Double grossIncome, Double rrspAmount) {
+    public TaxCalculator(Double grossIncome, double rrspAmount) {
         this.grossIncome = grossIncome;
         this.rrspAmount = rrspAmount;
     }
@@ -18,62 +18,62 @@ public class TaxCalculator {
         this.grossIncome = grossIncome;
     }
 
-    public Double getRrspAmount() {
+    public double getRrspAmount() {
         return rrspAmount;
     }
 
-    public void setRrspAmount(Double rrspAmount) {
+    public void setRrspAmount(float rrspAmount) {
         this.rrspAmount = rrspAmount;
     }
 
-    public double calcTaxRateProvince(Double grossIncome)
+    public double calcTaxProvince(Double grossIncome)
     {
         if(grossIncome <= 10582) {
-            return 0.0;
+            return grossIncome*0.0;
         }
         else if(grossIncome >= 10582 && grossIncome <=43906)
         {
-            return 5.05;
+            return grossIncome*5.05;
         }
         else if(grossIncome >= 43906 && grossIncome >= 87813)
         {
-            return 9.15;
+            return grossIncome*9.15;
         }
         else if (grossIncome >= 87813.0 && grossIncome <= 150000) {
-            return 11.16;
+            return grossIncome*11.16;
         }
         else if (grossIncome >= 150000.0 && grossIncome <= 220000)
         {
-            return 12.16;
+            return grossIncome*12.16;
         }
         else {
-            return 13.16;
+            return grossIncome*13.16;
         }
     }
 
-    public double calcTaxRateFederal(Float grossIncome)
+    public double calcTaxFederal(double grossIncome)
     {
         if(grossIncome <=  12069.0) {
-            return 0.0;
+            return grossIncome*0.0;
         }
         else if(grossIncome > 12069 && grossIncome <= 47630){
-            return 15;
+            return grossIncome*15;
         }
         else if(grossIncome > 47630 && grossIncome <= 95259){
-            return 20.50;
+            return grossIncome*20.50;
         }
         else if(grossIncome > 95259 && grossIncome <= 147667){
-            return 26;
+            return grossIncome*26;
         }
         else if(grossIncome > 147667 && grossIncome <= 210371){
-            return 29;
+            return grossIncome*29;
         }
         else {
-            return 33;
+            return grossIncome*33;
         }
     }
 
-    public double calcCPP()
+    public double calcCPP(double grossIncome)
     {
         double cpp;
         if(this.grossIncome >= 57400)

@@ -26,9 +26,15 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         String fullName = lastName + ", " +firstName;
         txtFullName.setText(fullName);
         txtGrossIncome.setText(Double.toString(craCustomer.getGrossIncome()));
-        txtBirthDate.setText(craCustomer.getBirthDate().toString());
+        //txtBirthDate.setText(craCustomer.getBirthDate().toString());
         //txtGender.setText(craCustomer.getGender().toString());
-        TaxCalculator txCalc = new TaxCalculator(craCustomer.getGrossIncome(), craCustomer.getRrspContributed());
+        TaxCalculator taxCalculator = new TaxCalculator(craCustomer.getGrossIncome(), craCustomer.getRrspContributed());
+        String provincialTax = Double.toString(taxCalculator.calcTaxProvince(craCustomer.getGrossIncome()));
+        String federalTax = Double.toString(taxCalculator.calcTaxFederal(craCustomer.getGrossIncome()));
+        String CPP = Double.toString(taxCalculator.calcCPP(craCustomer.getGrossIncome()));
+        //txtProvincialTax.setText(provincialTax);
+        txtFederalTax.setText(federalTax);
+        txtCPP.setText(CPP);
     }
 
     public void initialization2()
@@ -37,9 +43,8 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         txtSin = findViewById(R.id.txtSinNumber);
         txtBirthDate = findViewById(R.id.txtBirthDate);
         txtGender = findViewById(R.id.txtGender);
-       // txtAge = findViewById(R.id.txtAge);
+        txtAge = findViewById(R.id.txtAge);
         txtGrossIncome = findViewById(R.id.txtGrossIncome);
     }
-
 }
 
