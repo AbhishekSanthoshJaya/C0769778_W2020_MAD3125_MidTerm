@@ -1,9 +1,7 @@
 package com.aby.c0769778_w2020_mad3125_midterm.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.solver.widgets.Helper;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -13,6 +11,9 @@ import com.aby.c0769778_w2020_mad3125_midterm.R;
 import com.aby.c0769778_w2020_mad3125_midterm.model.CRACustomer;
 import com.aby.c0769778_w2020_mad3125_midterm.util.HelperMethods;
 import com.aby.c0769778_w2020_mad3125_midterm.util.TaxCalculator;
+
+import org.joda.time.LocalDate;
+import org.joda.time.Years;
 
 public class TaxDataDetailsActivity extends AppCompatActivity {
     TextView txtRRSP, txtSin, txtFullName, txtBirthDate, txtGender, txtAge, txtGrossIncome, txtFederalTax, txtProvincialTax, txtCPP, txtEI, txtCarry, txtTotalTaxIncome, txtTotalTax;
@@ -31,6 +32,7 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
         txtGrossIncome.setText(HelperMethods.getInstance().doubleFormatter(craCustomer.getGrossIncome()));
         txtBirthDate.setText(craCustomer.getBirthDate());
         txtGender.setText(craCustomer.getGender());
+        txtAge.setText(getAge().toString());
         TaxCalculator taxCalculator = new TaxCalculator(craCustomer.getGrossIncome(), craCustomer.getRrspContributed());
         String provincialTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxProvince(craCustomer.getGrossIncome()));
         String federalTax = HelperMethods.getInstance().doubleFormatter(taxCalculator.calcTaxFederal(craCustomer.getGrossIncome()));
@@ -70,6 +72,17 @@ public class TaxDataDetailsActivity extends AppCompatActivity {
             Double finalCarry =  maxRRSP - craCustomer.getRrspContributed();
             txtCarry.setText(HelperMethods.getInstance().doubleFormatter(finalCarry));
         }
+    }
+
+    public Years getAge()
+    {
+        LocalDate birthdate = HelperMethods.getInstance().stringToDate(txtBirthDate.getText().toString());
+        LocalDate now = new LocalDate();
+        Years age = Years.yearsBetween(birthdate, now);
+//        int age = 0;
+//        String bDate = txtBirthDate.getText().toString();
+//        age = LocalDate.now().getYear() - HelperMethods.getInstance().stringToDate(bDate).getYear();
+        return age;
     }
 
     public void initialization2()

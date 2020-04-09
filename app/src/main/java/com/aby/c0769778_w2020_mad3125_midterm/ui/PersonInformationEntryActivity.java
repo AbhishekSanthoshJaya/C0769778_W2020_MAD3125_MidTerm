@@ -275,7 +275,6 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         return age;
     }
 
-
     public String getGender()
     {
         if (rdBtnMale.isChecked()){

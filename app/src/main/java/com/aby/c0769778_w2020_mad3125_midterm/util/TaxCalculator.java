@@ -86,11 +86,6 @@ public class TaxCalculator {
         return cpp;
     }
 
-    public double calcRRSP()
-    {
-
-        return this.rrspAmount * 0.18;
-    }
 
     public double calcEI(double grossIncome)
     {
