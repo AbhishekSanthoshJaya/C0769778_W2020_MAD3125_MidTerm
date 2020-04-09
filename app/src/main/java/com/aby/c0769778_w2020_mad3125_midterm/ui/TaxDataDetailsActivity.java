@@ -17,6 +17,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
 public class TaxDataDetailsActivity extends AppCompatActivity {
+
     TextView txtRRSP, txtSin, txtFullName, txtBirthDate, txtGender, txtAge, txtGrossIncome, txtFederalTax, txtProvincialTax, txtCPP, txtEI, txtCarry, txtTotalTaxIncome, txtTotalTax;
     @SuppressLint("SetTextI18n")
     @Override

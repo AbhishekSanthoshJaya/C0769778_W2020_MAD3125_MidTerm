@@ -27,6 +27,18 @@ public class TaxCalculator {
     }
 
 
+//    public double complexCalcTaxProvince(double grossIncome)
+//    {
+//        double temp1, temp2, temp3, temp4;
+//        if(grossIncome > 10582)
+//        {
+//            temp1 = grossIncome - 10582;
+//            if(temp1 > 43906)
+//            {
+//
+//            }
+//        }
+//    }
 
     public double calcTaxProvince(double grossIncome)
     {

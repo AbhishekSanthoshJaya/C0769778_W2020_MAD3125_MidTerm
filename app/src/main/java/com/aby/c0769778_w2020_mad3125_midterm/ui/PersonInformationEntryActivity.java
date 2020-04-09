@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -79,7 +81,6 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         valueSetter();
         addingDatePicker();
         filingDateWarning();
-        //sinValidations();
 
         //------- CODE TO PLAY CUSTOM AUDIO ON SCREEN LOAD -------
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.formfilloice);
@@ -110,6 +111,83 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
                 btnOK.setVisibility(View.INVISIBLE);
                 edtDate.setError(null);
                 edtSIN.setError(null);
+            }
+        });
+        textWatching();
+
+    }
+
+    private void textWatching()
+    {
+        edtSINText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if(!sinValidations(edtSINText.getText().toString()))
+                {
+                    edtSINText.setError("Enter a valid SIN");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                edtSIN.setError(null);
+            }
+        });
+
+        edtFirstNameText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            edtFirstName.setError(null);
+            }
+        });
+
+        edtLastNameText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            edtLastName.setError(null);
+            }
+        });
+
+        edtGrossIncomeText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                edtGrossIncome.setError(null);
             }
         });
     }
@@ -339,6 +417,10 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         edtRRSPText.getText().clear();
         edtSIN.setError(null);
         edtDate.setError(null);
+        edtFirstName.setError(null);
+        edtLastName.setError(null);
+        edtGrossIncome.setError(null);
+        edtRRSP.setError(null);
 
         rdBtnOther.setChecked(false);
         rdBtnMale.setChecked(false);
