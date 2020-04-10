@@ -29,6 +29,7 @@ Screenshot | Description
 --- | ---
 <img src="https://s6.gifyu.com/images/splashscreen.gif" alt="splash"/> | Splash screen that lasts 5 seconds. Used gif handling.
 <img src="https://i93.servimg.com/u/f93/18/45/29/87/dataen10.png" alt="DataEntry"/> | Data entry screen for the app. An audio clip plays that asks users to fill the form. Has checks on each field to see if it is empty. Has checks for age and SIN. Date of filing is set to currentdate. Touching date of filing field will bring up a material alert dialog warning the user.
+<img src="https://s6.gifyu.com/images/textwatching.gif" alt="textwatcher"/> | Errors are removed for all necessary fields when the right input is entered by the user.
 <img src="https://i93.servimg.com/u/f93/18/45/29/87/datepi10.png" alt="datepicker"/> | On touching the birthdate field, a date picker pops up.
 <img src="https://i.servimg.com/u/f93/18/45/29/87/screen12.png" alt="alert"/> | Alert box shows up on clicking the tax filing date field.
 <img src="https://i93.servimg.com/u/f93/18/45/29/87/age_an10.png" alt="errors"/> | Validations for SIN number using regex and age. Buttons disappear if the applicant is not over 18 and displays a warning. TextWatcher removes set errors after text change.
