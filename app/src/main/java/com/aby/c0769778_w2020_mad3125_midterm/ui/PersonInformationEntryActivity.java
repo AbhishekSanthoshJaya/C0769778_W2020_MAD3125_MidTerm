@@ -301,6 +301,26 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
             return;
         }
 
+        if(!edtGrossIncomeText.getText().toString().isEmpty()) {
+            someFlag = true;
+            int grossValue = Integer.parseInt(edtGrossIncomeText.getText().toString());
+            if(grossValue < 0)
+            {
+                edtGrossIncome.setError("Enter a positive value");
+                new MaterialAlertDialogBuilder(PersonInformationEntryActivity.this)
+                        .setTitle("Invalid Value")
+                        .setMessage("Gross Income cannot be negative")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+            return;
+        }
+
         if(!someFlag)
         {
             int anotherFlag = 0;
