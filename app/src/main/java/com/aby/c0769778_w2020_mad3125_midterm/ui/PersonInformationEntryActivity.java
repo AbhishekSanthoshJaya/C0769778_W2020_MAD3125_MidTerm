@@ -302,10 +302,11 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
         }
 
         if(!edtGrossIncomeText.getText().toString().isEmpty()) {
-            someFlag = true;
+
             int grossValue = Integer.parseInt(edtGrossIncomeText.getText().toString());
             if(grossValue < 0)
             {
+                someFlag = true;
                 edtGrossIncome.setError("Enter a positive value");
                 new MaterialAlertDialogBuilder(PersonInformationEntryActivity.this)
                         .setTitle("Invalid Value")
@@ -318,9 +319,7 @@ public class PersonInformationEntryActivity extends AppCompatActivity {
                         })
                         .show();
             }
-            return;
         }
-
         if(!someFlag)
         {
             int anotherFlag = 0;
